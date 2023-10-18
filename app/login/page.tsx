@@ -1,17 +1,26 @@
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 export default function Login() {
     return <>
         <Form>
-            <div>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="name@example.com"/>
+            <div className="mb-3">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                    We&apos;ll never share your email with anyone else.
+                </Form.Text>
             </div>
 
-            <div>
-                <Form.Label>Example textarea</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+            <div className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
             </div>
+            <div className="mb-3">
+                <Form.Check type="checkbox" label="Check me out" />
+            </div>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
         </Form>
     </>;
 }
