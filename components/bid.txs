@@ -1,0 +1,15 @@
+import { Bid } from "@/database/bids";
+
+interface bidProps{
+    bid: Bid;
+}
+
+export function Bid(props: bidProps){
+    const bid = props.bid;
+
+    return <>
+        
+    </>;
+}
+
+
