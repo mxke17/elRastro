@@ -6,15 +6,20 @@ import {User } from "@/database/users";
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
 import { AuctionList } from "./auctionList";
-import { Auction } from "@/database/auctions";
+import { GetAllAuctionsOfUser } from "@/database/auctions";
 
 
 interface profileProps{
     user: User;
+    
 }
 
-export function Profile(props: profileProps){
+export async function Profile(props: profileProps){
     const user = props.user;
+    const auctions = await GetAllAuctionsOfUser(user.ID.toHexString());
+    if(auctions===null){
+        return <h1>ERROR</h1>;
+    }
 return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#9de2ff" }}>
       <MDBContainer className="py-5 h-100">
@@ -30,7 +35,7 @@ return (
                   </MDBBtn>
                 </div>
                 <div className="ms-3" style={{ marginTop: "130px" }}>
-                  <MDBTypography tag="h5">{user.username}</MDBTypography>
+                  <MDBTypography tag="h5">{user.UserName}</MDBTypography>
                   <MDBCardText>User.direccion.city</MDBCardText>
                 </div>
               </div>
@@ -58,7 +63,7 @@ return (
                   <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
                 </div>
                 <MDBRow>
-                    <AuctionList auctions={[new Auction, new Auction, new Auction]}></AuctionList>
+                    <AuctionList auctions={auctions}></AuctionList>
 
                 </MDBRow>
                 

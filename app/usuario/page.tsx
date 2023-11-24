@@ -3,14 +3,18 @@ import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
 //import { Auction } from "@/database/auctions";
 import { Profile } from "@/components/profile";
-import { User } from "@/database/users";
+import { GetUser } from "@/database/users";
 
-export default function home() {
-    return <>
+export default async function home() {
+   const user = await GetUser("653be37c5ee549bea86cd462");
+   if(user===null){
+         return <h1>ERROR</h1>;
+    }
+   return <>
         <NavbarHome></NavbarHome>
 
 
-        <Profile user={new User}></Profile>
+        <Profile user={user}></Profile>
 
         <FooterHome></FooterHome>
     </>;

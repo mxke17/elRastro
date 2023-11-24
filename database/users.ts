@@ -4,7 +4,7 @@ import { Get } from "./fetch";
 
 const PATH = "usuario";
 
-export class Auction {
+export class User {
     ID: ObjectId;
     Email: string;
     Picture: string;
@@ -23,7 +23,7 @@ export class Auction {
     }
 
     static FromJSON(json: any) {
-        return new Auction(
+        return new User(
             json["_id"],
             json["Email"],
             json["Foto"],
@@ -42,7 +42,7 @@ export async function GetUser(id: string) {
 
     try {
         const json = await response.json();
-        return Auction.FromJSON(json);
+        return User.FromJSON(json);
     } catch(_) {
         return null;
     }
@@ -55,7 +55,7 @@ export async function GetAllUsers() {
     try {
         const json = (await response.json()) as any[];
         
-        return json.map((x: any) => Auction.FromJSON(x));
+        return json.map((x: any) => User.FromJSON(x));
     } catch(_) {
         return null;
     }
