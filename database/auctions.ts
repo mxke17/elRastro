@@ -36,7 +36,7 @@ export class Auction {
         this.Deadline = new Date(deadline);
         this.Picture = picture;
         this.InitialPrice = initialPrice;
-        this.Seller = ObjectId.createFromBase64(seller);
+        this.Seller = ObjectId.createFromHexString(seller);
     }
 
     static FromJSON(json: any) {
