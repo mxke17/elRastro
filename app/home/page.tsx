@@ -1,12 +1,22 @@
 import { AuctionList } from "@/components/auctionList";
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
-import { Auction } from "@/database/auctions";
+import { GetAllAuctions } from "@/database/auctions";
 
-export default function home(){
+export default async function home(){
+    const auctions = await GetAllAuctions(); 
+
+    if (auctions === null){
+        return <>
+            <NavbarHome></NavbarHome>
+            <h3>No hay subastas</h3>
+            <FooterHome></FooterHome>
+        </>;
+    }
+
     return <>
         <NavbarHome></NavbarHome>
-        <AuctionList auctions={[new Auction, new Auction, new Auction]}></AuctionList>
+        <AuctionList auctions={auctions}></AuctionList>
         <FooterHome></FooterHome>
     </>;
 }

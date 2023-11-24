@@ -74,7 +74,7 @@ export async function GetAllAuctions() {
 
     try {
         const json = (await response.json()) as any[];
-        
+
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
         return null;
