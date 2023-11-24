@@ -1,22 +1,62 @@
-//import { ObjectId } from "mongodb";
-import { DatabaseItem } from "./databaseItem";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ObjectId } from "mongodb";
+import { Get } from "./fetch";
 
-//export enum User {
-//
-//}
+const PATH = "usuario";
 
-export class User extends DatabaseItem {
-    email: string;
-    username: string;
-    //password: string;
-    profilePicture: string;
+export class Auction {
+    ID: ObjectId;
+    Email: string;
+    Picture: string;
+    UserName: string;
 
-    constructor() {
-        super();
+    constructor(
+        id: string,
+        email: string,
+        picture: string,
+        userName: string
+    ) {
+        this.ID = ObjectId.createFromHexString(id);
+        this.Email = email;
+        this.Picture = picture;
+        this.UserName = userName;
+    }
 
-        this.email = "Correo electronico";
-        this.username = "Nombre de usuario";
-        //this.password = "Contraseña";
-        this.profilePicture = "https://previews.123rf.com/images/iimages/iimages1601/iimages160100313/50692473-el-peque%C3%B1o-mono-comiendo-pl%C3%A1tanos-ilustraci%C3%B3n.jpg";
+    static FromJSON(json: any) {
+        return new Auction(
+            json["_id"],
+            json["Email"],
+            json["Foto"],
+            json["Nombre Usuario"]
+        );
+    }
+}
+
+
+export async function GetUser(id: string) {
+    const response = await Get(`${PATH}/${id}`);
+
+    if(response.status === 404) {
+        return null;
+    }
+
+    try {
+        const json = await response.json();
+        return Auction.FromJSON(json);
+    } catch(_) {
+        return null;
+    }
+}
+
+
+export async function GetAllUsers() {
+    const response = await Get(PATH);
+
+    try {
+        const json = (await response.json()) as any[];
+        
+        return json.map((x: any) => Auction.FromJSON(x));
+    } catch(_) {
+        return null;
     }
 }
