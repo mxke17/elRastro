@@ -10,7 +10,7 @@ export function AuctionList(props: auctionListProps){
         <ul>
             {
                 props.auctions.map(auction => {
-                    return <li key={auction.id.toHexString()}><AuctionMini auction={auction}></AuctionMini></li>;
+                    return <li key={auction.ID.toHexString()}><AuctionMini auction={auction}></AuctionMini></li>;
                 })
             }
         </ul>

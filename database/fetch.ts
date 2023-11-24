@@ -6,5 +6,6 @@ if(!backendUri) {
 }
 
 export async function Get(path: string) {
+
     return await fetch(backendUri + path);
 }
