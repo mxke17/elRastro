@@ -2,7 +2,6 @@
 import { Auction } from "@/database/auctions";
 import { Card } from "react-bootstrap";
 import Figure from "react-bootstrap/Figure";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 interface auctionMiniProps {
     auction: Auction;
