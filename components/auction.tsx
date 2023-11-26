@@ -20,10 +20,8 @@ export function AuctionMini(props: auctionMiniProps) {
                 <Card.Title><Card.Link href="" style={{ textDecoration: "underline", color: "black" }}>
                     {auction.Title}
                 </Card.Link></Card.Title>
-                <Card.Text>
-                    <h6> Precio partida: {auction.InitialPrice} € </h6>
-                    <h6> Vendedor: </h6>
-                </Card.Text>
+                <Card.Text>Precio partida: {auction.InitialPrice} €</Card.Text>
+                <Card.Text>Vendedor:</Card.Text>
             </Card.Body>
         </Card>
     </>;

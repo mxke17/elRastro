@@ -80,7 +80,7 @@ export async function GetAllAuctions() {
         return null;
     }
 }
-
+  
 
 export async function GetAllAuctionsOfUser(userID: string) {
     const response = await Get(`${PATH}/usuario/${userID}`);
