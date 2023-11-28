@@ -5,6 +5,7 @@ import { GetAllAuctions } from "@/database/auctions";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { EditAuction } from "@/components/editAuction";
 
 export default async function home(){
     const auctions = await GetAllAuctions(); 
@@ -23,6 +24,7 @@ export default async function home(){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
+                    <EditAuction></EditAuction>
                     <AuctionList auctions={auctions}></AuctionList>
                 </Col>
                 <Col xs={1}></Col>
