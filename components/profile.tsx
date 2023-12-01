@@ -2,24 +2,31 @@
 //
 "use client"; 
 import {User } from "@/database/users";
+//import {Address } from "@/database/address";
 //import Figure from "react-bootstrap/Figure";
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
-import { AuctionList } from "./auctionList";
-import { GetAllAuctionsOfUser } from "@/database/auctions";
+import { GetAddress } from "@/database/address";
+//import { AuctionList } from "./auctionList";
+//import { GetAllAuctionsOfUser } from "@/database/auctions";
 
 
 interface profileProps{
     user: User;
     
 }
-
-export async function Profile(props: profileProps){
+interface adrressProps{
+  address : Address;
+}
+//
+export function Profile(props: profileProps,addressprops: adrressProps ){
     const user = props.user;
-    const auctions = await GetAllAuctionsOfUser(user.ID.toHexString());
-    if(auctions===null){
-        return <h1>ERROR</h1>;
-    }
+    const addres = addressprops.address;
+    //const user = null;
+    console.log("Nombre usuario:");
+    console.log(user.UserName);
+ 
+    
 return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#9de2ff" }}>
       <MDBContainer className="py-5 h-100">
@@ -34,9 +41,10 @@ return (
                     Edit profile
                   </MDBBtn>
                 </div>
-                <div className="ms-3" style={{ marginTop: "130px" }}>
-                  <MDBTypography tag="h5">{user.UserName}</MDBTypography>
+                <div className="ms-4" style={{ marginTop: "130px" }}>
+                  <MDBTypography tag="h5">OASOAOOO</MDBTypography>
                   <MDBCardText>User.direccion.city</MDBCardText>
+                <MDBCardText>Rating: 4,5 /5⭐</MDBCardText>
                 </div>
               </div>
               <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>
@@ -53,6 +61,10 @@ return (
                     <MDBCardText className="mb-1 h5">Pujas.(user).last</MDBCardText>
                     <MDBCardText className="small text-muted mb-0">Pujas conseguidas</MDBCardText>
                   </div>
+                  <div>
+                    <MDBCardText className="mb-1 h5">Subastas(user).size</MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">Reviews</MDBCardText>
+                  </div>
                 </div>
               </div>
               <MDBCardBody className="text-black p-4">
@@ -63,7 +75,7 @@ return (
                   <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
                 </div>
                 <MDBRow>
-                    <AuctionList auctions={auctions}></AuctionList>
+                    
 
                 </MDBRow>
                 
