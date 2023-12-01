@@ -11,7 +11,7 @@ export function ChatList(props: ChatListProps){
     return <>
             <ul>
                 {props.chatList.map(chats => {
-                return <li key={chats.id.toHexString()}><ChatMini chats = {chats} ></ChatMini></li>;
+                return <li key={chats.id}><ChatMini chat = {chats} ></ChatMini></li>;
                 })}
 
 
