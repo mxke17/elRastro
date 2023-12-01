@@ -4,6 +4,13 @@ import { Get } from "./fetch";
 
 const PATH = "usuario";
 
+export interface UserJSON {
+    _id: string,
+    Email: string,
+    Foto: string,
+    ["Nombre Usuario"]: string
+}
+
 export class User {
     ID: ObjectId;
     Email: string;
@@ -22,13 +29,23 @@ export class User {
         this.UserName = userName;
     }
 
-    static FromJSON(json: any) {
+    static FromJSON(json: UserJSON) {
+        console.log(json);
         return new User(
             json["_id"],
             json["Email"],
             json["Foto"],
             json["Nombre Usuario"]
         );
+    }
+
+    ToJSON(): UserJSON {
+        return {
+            _id: this.ID.toHexString(),
+            Email: this.Email,
+            Foto: this.Picture,
+            ["Nombre Usuario"]: this.UserName
+        };
     }
 }
 
