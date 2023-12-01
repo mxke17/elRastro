@@ -1,7 +1,6 @@
 "use client";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -19,31 +18,17 @@ export function NavbarHome() {
                         navbarScroll
                     >
                         <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">Mi Perfil</Nav.Link>
-                        <Nav.Link href="#action3">Mis Subastas</Nav.Link>
-                        <NavDropdown title="Link" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">
-                                Another action
-                            </NavDropdown.Item>
+                        <NavDropdown title="Perfil" id="navbarScrollingDropdown">
+                            <NavDropdown.Item href="#action3">Mi perfil</NavDropdown.Item>
+                            <NavDropdown.Item href="#action3">Mis subastas</NavDropdown.Item>
+                            <NavDropdown.Item href="#action3">Mis pujas</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action5">
-                                Something else here
+                                Mis reviews
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#" disabled>
-                            Link
-                        </Nav.Link>
                     </Nav>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Buscar</Button>
-                    </Form>
+                    <div className="d-flex"><Button variant="success">Nueva subasta</Button></div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

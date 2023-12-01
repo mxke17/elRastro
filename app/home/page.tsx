@@ -5,7 +5,7 @@ import { GetAllAuctions } from "@/database/auctions";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { EditAuction } from "@/components/editAuction";
+import { Filter } from "@/components/filter";
 
 export default async function home(){
     const auctions = await GetAllAuctions(); 
@@ -13,7 +13,15 @@ export default async function home(){
     if (auctions === null){
         return <>
             <NavbarHome></NavbarHome>
-            <h3>No hay subastas</h3>
+            <Container fluid="md">
+            <Row>
+                <Col xs={1}></Col>
+                <Col>
+                    <h4>Actualmente no existen subastas disponibles</h4>
+                </Col>
+                <Col xs={1}></Col>
+            </Row>
+        </Container>
             <FooterHome></FooterHome>
         </>;
     }
@@ -24,7 +32,7 @@ export default async function home(){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
-                    <EditAuction></EditAuction>
+                    <Filter></Filter>
                     <AuctionList auctions={auctions}></AuctionList>
                 </Col>
                 <Col xs={1}></Col>

@@ -1,15 +1,10 @@
 "use client";
 import { Modal, Button, Card, Form } from "react-bootstrap";
-import { Auction } from "@/database/auctions";
 import Figure from "react-bootstrap/Figure";
 import { useState } from "react";
 
-interface editAuction {
-    auction: Auction;
-}
-
-export function EditAuction(props: editAuction) {
-    const auction = props.auction;
+export function EditAuction() {
+    //const auction = props.auction;
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
