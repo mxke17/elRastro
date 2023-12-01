@@ -1,21 +1,9 @@
 // Las cosas de bootstrap, hay que renderizarlas en el server, por eso se importan aquí
 //
-<<<<<<< HEAD
 "use client";
 import { User, UserJSON } from "@/database/users";
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
-=======
-"use client"; 
-import {User } from "@/database/users";
-//import {Address } from "@/database/address";
-//import Figure from "react-bootstrap/Figure";
-import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
-import { GetAddress } from "@/database/address";
-//import { AuctionList } from "./auctionList";
-//import { GetAllAuctionsOfUser } from "@/database/auctions";
->>>>>>> 4df3fff8255a9d06477e51ce0a16070d640eed35
 
 
 interface profileProps {
@@ -72,13 +60,8 @@ export async function Profile(props: profileProps) {
                   <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
                 </div>
                 <MDBRow>
-<<<<<<< HEAD
-=======
-                    
->>>>>>> 4df3fff8255a9d06477e51ce0a16070d640eed35
 
                 </MDBRow>
-
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
