@@ -1,26 +1,18 @@
 // Las cosas de bootstrap, hay que renderizarlas en el server, por eso se importan aquí
 //
-"use client"; 
-import {User } from "@/database/users";
-//import Figure from "react-bootstrap/Figure";
+"use client";
+import { User, UserJSON } from "@/database/users";
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
-import { AuctionList } from "./auctionList";
-import { GetAllAuctionsOfUser } from "@/database/auctions";
 
 
-interface profileProps{
-    user: User;
-    
+interface profileProps {
+  user: UserJSON;
 }
 
-export async function Profile(props: profileProps){
-    const user = props.user;
-    const auctions = await GetAllAuctionsOfUser(user.ID.toHexString());
-    if(auctions===null){
-        return <h1>ERROR</h1>;
-    }
-return (
+export async function Profile(props: profileProps) {
+  const user = User.FromJSON(props.user);
+  return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#9de2ff" }}>
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
@@ -30,7 +22,7 @@ return (
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
                   <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: "150px", zIndex: "1" }} />
-                  <MDBBtn outline color="dark" style={{height: "36px", overflow: "visible"}}>
+                  <MDBBtn outline color="dark" style={{ height: "36px", overflow: "visible" }}>
                     Edit profile
                   </MDBBtn>
                 </div>
@@ -56,17 +48,16 @@ return (
                 </div>
               </div>
               <MDBCardBody className="text-black p-4">
-                
-                
+
+
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <MDBCardText className="lead fw-normal mb-0">Recent auctions</MDBCardText>
                   <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
                 </div>
                 <MDBRow>
-                    <AuctionList auctions={auctions}></AuctionList>
 
                 </MDBRow>
-                
+
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -75,5 +66,3 @@ return (
     </div>
   );
 }
-
-export default Profile;
