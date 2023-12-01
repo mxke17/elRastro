@@ -1,9 +1,21 @@
 // Las cosas de bootstrap, hay que renderizarlas en el server, por eso se importan aquí
 //
+<<<<<<< HEAD
 "use client";
 import { User, UserJSON } from "@/database/users";
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
+=======
+"use client"; 
+import {User } from "@/database/users";
+//import {Address } from "@/database/address";
+//import Figure from "react-bootstrap/Figure";
+import React from "react";
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from "mdb-react-ui-kit";
+import { GetAddress } from "@/database/address";
+//import { AuctionList } from "./auctionList";
+//import { GetAllAuctionsOfUser } from "@/database/auctions";
+>>>>>>> 4df3fff8255a9d06477e51ce0a16070d640eed35
 
 
 interface profileProps {
@@ -26,9 +38,10 @@ export async function Profile(props: profileProps) {
                     Edit profile
                   </MDBBtn>
                 </div>
-                <div className="ms-3" style={{ marginTop: "130px" }}>
-                  <MDBTypography tag="h5">{user.UserName}</MDBTypography>
+                <div className="ms-4" style={{ marginTop: "130px" }}>
+                  <MDBTypography tag="h5">OASOAOOO</MDBTypography>
                   <MDBCardText>User.direccion.city</MDBCardText>
+                <MDBCardText>Rating: 4,5 /5⭐</MDBCardText>
                 </div>
               </div>
               <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>
@@ -45,6 +58,10 @@ export async function Profile(props: profileProps) {
                     <MDBCardText className="mb-1 h5">Pujas.(user).last</MDBCardText>
                     <MDBCardText className="small text-muted mb-0">Pujas conseguidas</MDBCardText>
                   </div>
+                  <div>
+                    <MDBCardText className="mb-1 h5">Subastas(user).size</MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">Reviews</MDBCardText>
+                  </div>
                 </div>
               </div>
               <MDBCardBody className="text-black p-4">
@@ -55,6 +72,10 @@ export async function Profile(props: profileProps) {
                   <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
                 </div>
                 <MDBRow>
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> 4df3fff8255a9d06477e51ce0a16070d640eed35
 
                 </MDBRow>
 
