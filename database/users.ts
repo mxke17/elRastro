@@ -8,7 +8,9 @@ export interface UserJSON {
     _id: string,
     Email: string,
     Foto: string,
-    ["Nombre Usuario"]: string
+    ["Nombre usuario"]: string,
+    Direccion: string
+
 }
 
 export class User {
@@ -16,17 +18,20 @@ export class User {
     Email: string;
     Picture: string;
     UserName: string;
+    Address: ObjectId;
 
     constructor(
         id: string,
         email: string,
         picture: string,
-        userName: string
+        userName: string,
+        address: string
     ) {
         this.ID = ObjectId.createFromHexString(id);
         this.Email = email;
         this.Picture = picture;
         this.UserName = userName;
+        this.Address = ObjectId.createFromHexString(address);
     }
 
     static FromJSON(json: UserJSON) {
@@ -35,7 +40,8 @@ export class User {
             json["_id"],
             json["Email"],
             json["Foto"],
-            json["Nombre Usuario"]
+            json["Nombre usuario"],
+            json["Direccion"]
         );
     }
 
@@ -44,7 +50,8 @@ export class User {
             _id: this.ID.toHexString(),
             Email: this.Email,
             Foto: this.Picture,
-            ["Nombre Usuario"]: this.UserName
+            ["Nombre usuario"]: this.UserName,
+            Direccion: this.Address.toHexString()
         };
     }
 }

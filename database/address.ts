@@ -2,7 +2,16 @@
 import { ObjectId } from "mongodb";
 import { Get } from "./fetch";
 
-const PATH = "direccion";
+const PATH = "direcciones";
+export interface AddressJSON {
+    _id: string,
+    Calle: string;
+    CodigoPostal: string;
+    Localidad: string;
+    Provincia: string;
+    Numero: number;
+    Pais: string;
+}
 
 export class Address {
     ID: ObjectId;
@@ -41,6 +50,17 @@ export class Address {
             json["Numero"],
             json["Pais"]
         );
+    }
+    ToJSON(): AddressJSON {
+        return {
+            _id: this.ID.toHexString(),
+            Calle : this.Calle,
+            CodigoPostal : this.CodigoPostal,
+            Localidad : this.Localidad,
+            Provincia : this.Provincia,
+            Numero : this.Numero,
+            Pais : this.Pais
+        };
     }
 }
 
