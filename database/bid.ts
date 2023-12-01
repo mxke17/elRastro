@@ -35,6 +35,15 @@ export class Bid {
 }
 
 export async function GetHighestBidForAuction(auctionID: string) {
-    const bid = await Get(`subastas/${auctionID}/pujaMasAlta`);
-    return Bid.FromJSON(bid);
+    const response = await Get(`subastas/${auctionID}/pujaMasAlta`);
+
+    try {
+        const json = await response.json();
+
+        if (!json["_id"]) { return null; }
+
+        return Bid.FromJSON(json);
+    } catch (_) {
+        return null;
+    }
 }
