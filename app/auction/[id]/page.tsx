@@ -13,6 +13,7 @@ export default async function auction(){
     return <>
         <NavbarHome></NavbarHome>
         <AuctionDetailed auction={auctionDetallada}></AuctionDetailed>
+        
         PUJA MÁS ALTA: AQUI VA LA PUJA MÁS ALTA Y POR TANTO EL QUE SE LA VA A LLEVAR ESPABILA Y COMPRALO ANTES TÚ
         <FooterHome></FooterHome>
     </>;
