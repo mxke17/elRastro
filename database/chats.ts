@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ObjectId } from "mongodb";
 import { Get } from "./fetch";
 
     const PATH = "chats";
 
 export class Chat {
-    id: string;
-    user: string;
-    seller: string;
+    id: ObjectId;
+    user: ObjectId;
+    seller: ObjectId;
 
     constructor(user: string, seller: string, id: string) {
-        this.user = user;
-        this.seller = seller;
-        this.id = id;
+        this.user = ObjectId.createFromHexString(user);
+        this.seller = ObjectId.createFromHexString(seller);
+        this.id = ObjectId.createFromHexString(id);
     }
 
     static FromJSON(json: any) {
@@ -24,7 +25,7 @@ export class Chat {
     }
     
 }
-export async function GetAuction(id: string) {
+export async function GetChat(id: string) {
     const response = await Get(`${PATH}/${id}`);
 
     if(response.status === 404) {
