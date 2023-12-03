@@ -11,7 +11,7 @@ export function MessageDetailed(props: messageProp){
     const sender = message.sender.toHexString();
     if(!(sender.localeCompare(user))){
         return  <>
-        <Container style={{alignItems: "center", margin:"20px"}}>
+        <Container style={{margin:"20px"}}>
             <Row xs = "auto">
                 <Col xs = "auto" className="text-center">
             <Card>

@@ -24,7 +24,7 @@ export function MessageList(props: MessageListProp){
 
             </Card>
             <br></br>
-            <Form >
+            <Form>
             <Row>
                 <Col>
             <Form.Control type="text" id="message"/>
