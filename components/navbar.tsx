@@ -22,6 +22,7 @@ export function NavbarHome() {
                             <NavDropdown.Item href="#action3">Mi perfil</NavDropdown.Item>
                             <NavDropdown.Item href="#action3">Mis subastas</NavDropdown.Item>
                             <NavDropdown.Item href="#action3">Mis pujas</NavDropdown.Item>
+                            <NavDropdown.Item href="#action3">Mis Chats</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action5">
                                 Mis reviews
