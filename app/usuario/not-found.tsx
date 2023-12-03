@@ -10,7 +10,7 @@ export default function NotFound() {
                 <Col xs={1}></Col>
                 <Col>
                     <Alert variant="danger" style={{ marginBottom: "20px", marginTop: "20px"}}>
-                        <h5>Subasta no encontrada</h5>
+                        <h5>Usuario no encontrada</h5>
                     </Alert>
                 </Col>
                 <Col xs={1}></Col>
