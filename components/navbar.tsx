@@ -9,7 +9,7 @@ export function NavbarHome() {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand href="#"><strong>elRastro</strong></Navbar.Brand>
+                <Navbar.Brand href="/home"><strong>elRastro</strong></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -17,12 +17,12 @@ export function NavbarHome() {
                         style={{ maxHeight: "100px" }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
+                        <Nav.Link href="/home">Home</Nav.Link>
                         <NavDropdown title="Perfil" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">Mi perfil</NavDropdown.Item>
                             <NavDropdown.Item href="#action3">Mis subastas</NavDropdown.Item>
                             <NavDropdown.Item href="#action3">Mis pujas</NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">Mis Chats</NavDropdown.Item>
+                            <NavDropdown.Item href="/chats">Mis Chats</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action5">
                                 Mis reviews
