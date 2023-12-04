@@ -51,7 +51,7 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Col>
                 <AuctionDetailed auction={auctionDetallada}></AuctionDetailed>
                 <BidMasAlta bid={bidMasAlta}></BidMasAlta>
-                <Button href="/auction/{[auctionDetallada.ID.toString()]}">PUJAR</Button>
+                <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
                 <Col xs={1}></Col>
             </Row>
