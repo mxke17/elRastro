@@ -15,7 +15,6 @@ export function BidMasAlta(props: bidProps) {
                 <p>No hay ninguna puja, ¡sé el primero en pujar!</p>
             </div>
         </div>
-        <button style={{ backgroundColor: "green", color: "#fff", padding: "10px", border: "none", borderRadius: "4px", cursor: "pointer", transition: "background-color 0.3s" }}>Pujar</button>
     </div></>;
     }
 
@@ -28,7 +27,6 @@ export function BidMasAlta(props: bidProps) {
             <p>Fecha de puja: {bid.Date.toString()}</p>
         </div>
     </div>
-    <button style={{ backgroundColor: "green", color: "#fff", padding: "10px", border: "none", borderRadius: "4px", cursor: "pointer", transition: "background-color 0.3s"}}>Pujar</button>
 </div>
 
     </>;

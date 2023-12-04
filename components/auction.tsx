@@ -17,7 +17,7 @@ export function AuctionMini(props: auctionMiniProps) {
                 src="/pruebaFoto.jpg"
             />
             <Card.Body>
-                <Card.Title><Card.Link href="" style={{ textDecoration: "underline", color: "black" }}>
+                <Card.Title><Card.Link href={`/auction/${auction.ID.toString()}`} style={{ textDecoration: "underline", color: "black" }}>
                     {auction.Title}
                 </Card.Link></Card.Title>
                 <Card.Text>Precio partida: {auction.InitialPrice} €</Card.Text>
@@ -47,15 +47,15 @@ export function AuctionDetailed(props: auctionMiniProps){
         <h2>{auction.Title}</h2>
         <p>{auction.Description}</p>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+
         <div>
         <Figure.Image
                 style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
-                src="/pruebaFoto.jpg"/>
+                src={`${auction.Picture}`}/>
           <p>Precio inicial: {auction.InitialPrice}</p>
           <p>Fecha de cierre: {auction.Deadline.toString()}</p>
         </div>
-      </div>
+
     </div>
 
     </>;

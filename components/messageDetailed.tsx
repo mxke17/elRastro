@@ -7,35 +7,36 @@ interface messageProp{
 
 export function MessageDetailed(props: messageProp){
     const message = props.message;
-    const user = "653be37c5ee549bea86cd462";
+    const user = "6560e2efa244c2665df8e44c";
     const sender = message.sender.toHexString();
-    if(!(sender.localeCompare(user))){
+    if(!(user === sender)){
         return  <>
-        <Container style={{margin:"20px"}}>
-            <Row xs = "auto">
-                <Col xs = "auto" className="text-center">
-            <Card>
-            <p>{message.message}</p>
-            </Card>
-                </Col>
-                <Col><sub>{message.time.getHours()}:{message.time.getMinutes()}</sub></Col>
-            </Row>
-            </Container>
-            
-        </>;
-    }
+    <Container style = {{alignItems: "center", margin:"20px"}}>
+        <Row xs = "auto">
+            <Col xs = "auto" className="text-center">
+        <Card bg = "secondary" text="white">
+        <p style={{margin:"5px", maxWidth:"500px"}}>{message.message}</p>
+        </Card>
+            </Col>
+            <Col><sub>{message.time.getDate()}/{message.time.getMonth()}/{message.time.getFullYear()} {message.time.getHours()}:{message.time.getMinutes()}</sub></Col>
+        </Row>
+        </Container>
+        
+    </>;
+    }else{
 
     return <>
     <Container style = {{alignItems: "center", margin:"20px"}}>
         <Row xs = "auto">
             <Col xs = "auto" className="text-center">
         <Card bg = "success" text="white">
-        <p>{message.message}</p>
+        <p style={{margin:"5px", maxWidth:"500px"}}>{message.message}</p>
         </Card>
             </Col>
-            <Col><sub>{message.time.getHours()}:{message.time.getMinutes()}</sub></Col>
+            <Col><sub>{message.time.getDate()}/{message.time.getMonth()}/{message.time.getFullYear()} {message.time.getHours()}:{message.time.getMinutes()}</sub></Col>
         </Row>
         </Container>
         
     </>;
+    }
 }
