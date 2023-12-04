@@ -2,7 +2,6 @@ import { ChatList } from "@/components/chatList";
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
 import { GetAllChatsOfUser } from "@/database/chats";
-
 export default async function chats(){
     const userId = "653be37c5ee549bea86cd462";
     const allChats = await GetAllChatsOfUser(userId);

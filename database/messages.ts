@@ -72,7 +72,7 @@ export async function GetAllMessagesfromSender(senderId: string) {
     }
 }
 export async function GetAllMessagesFromChat(id: string){
-    const response = await Get(`${PATH}?chat=${id}`);
+    const response = await Get(`/chats/${id}/messages`);
 
     try{
         const json = (await response.json()) as any[];
