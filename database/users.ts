@@ -35,7 +35,7 @@ export class User {
     }
 
     static FromJSON(json: UserJSON) {
-        console.log(json);
+      
         return new User(
             json["_id"],
             json["Email"],

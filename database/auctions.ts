@@ -8,6 +8,17 @@ export enum AuctionState {
     RUNNING = "RUNNING",
     FINISHED = "FINISHED",
 }
+export interface AuctionJSON {
+    _id: string,
+    Titulo: string,
+    Descripcion: string,
+    Estado: AuctionState,
+    ["Fecha limite"]: string,
+    Foto: string,
+    ["Precio partida"]: number,
+    Subastador: string
+
+}
 
 export class Auction {
     ID: ObjectId;
@@ -44,12 +55,25 @@ export class Auction {
             json["_id"],
             json["Titulo"],
             json["Descripcion"],
-            json["Estado"].toUpperCase(),
+            json["Estado"],
             json["Fecha limite"],
             json["Foto"],
             json["Precio partida"],
             json["Subastador"]
         );
+    }
+    ToJSON(): AuctionJSON {
+        return {
+            _id: this.ID.toHexString(),
+            Titulo: this.Title,
+            Descripcion: this.Description,
+            Estado: this.State,
+            ["Fecha limite"]: this.Deadline.toISOString(),
+            Foto: this.Picture,
+            ["Precio partida"]: this.InitialPrice,
+            Subastador: this.Seller.toHexString()
+
+        };
     }
 }
 
@@ -84,12 +108,15 @@ export async function GetAllAuctions() {
 
 export async function GetAllAuctionsOfUser(userID: string) {
     const response = await Get(`${PATH}/usuario/${userID}`);
-
+//    console.log(`${PATH}/subastas/usuario/${userID}`);
     try {
         const json = (await response.json()) as any[];
-        
+        console.log("Subastas de usuario");
+        console.log(json);
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
+        console.log("error subastas de usuario");
+        console.log(_);
         return null;
     }
 }

@@ -2,6 +2,7 @@
 //
 //"use client";
 import { Address, AddressJSON } from "@/database/address";
+import { Auction, AuctionJSON } from "@/database/auctions";
 import { User, UserJSON } from "@/database/users";
 //import './TuEstilo.css'; // Asegúrate de tener un archivo de estilo personalizado
 import React from "react";
@@ -9,11 +10,19 @@ import React from "react";
 interface profileProps {
   user: UserJSON;
   address: AddressJSON;
+  auctions: AuctionJSON[];
+  bids : BidsJSON[];
 }
 
 export async function Profile(props: profileProps) {
   const user = User.FromJSON(props.user);
   const address = Address.FromJSON(props.address);
+  const auctions = props.auctions.map(auction => Auction.FromJSON(auction));
+
+  
+  
+
+
   return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#0000" }}>
       <div className="py-5 h-100 container">
@@ -22,7 +31,7 @@ export async function Profile(props: profileProps) {
             <div className="card">
               <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: "#000", height: "200px" }}>
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" style={{ width: "150px", zIndex: "1" }} />
                   <button className="btn btn-outline-dark" style={{ height: "36px", overflow: "visible" }}>
                     Edit profile
@@ -37,7 +46,7 @@ export async function Profile(props: profileProps) {
               <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>
                 <div className="d-flex justify-content-end text-center py-1">
                   <div>
-                    <p className="mb-1 h5">Subastas(user).size</p>
+                    <p className="mb-1 h5">{auctions.length}</p>
                     <p className="small text-muted mb-0">Subastas publicadas</p>
                   </div>
                   <div className="px-3">

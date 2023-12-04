@@ -2,6 +2,8 @@
 import { ObjectId } from "mongodb";
 import { Get } from "./fetch";
 
+const PATH = "pujas";
+
 export class Bid {
     ID: ObjectId;
     Date: Date;
@@ -44,6 +46,21 @@ export async function GetHighestBidForAuction(auctionID: string) {
 
         return Bid.FromJSON(json);
     } catch (_) {
+        return null;
+    }
+}
+
+export async function GetAllBidsOfUser(userID: string) {
+    const response = await Get(`${PATH}/usuario/${userID}`);
+//    console.log(`${PATH}/subastas/usuario/${userID}`);
+    try {
+        const json = (await response.json()) as any[];
+        console.log("Pujas de usuario");
+        console.log(json);
+        return json.map((x: any) => Bid.FromJSON(x));
+    } catch(_) {
+        console.log("error subastas de usuario");
+        console.log(_);
         return null;
     }
 }
