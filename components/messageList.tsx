@@ -9,17 +9,12 @@ interface MessageListProp{
 
 export function MessageList(props: MessageListProp){
 
-    const user = "653be37c5ee549bea86cd462";
     
     return <>
-    <Container className ="align-bottom" style={{minHeight: "700px",maxHeight:"700", maxWidth:"800px", display:"grid", marginTop:"100px"}}>
+    <Container className ="align-bottom" style={{minHeight: "700px",maxHeight:"700", maxWidth:"800px", marginTop:"100px"}}>
         <Card style={{height:"500px"}}>
                 {props.messageList.map(message => {
-                    if(message.sender.toHexString().localeCompare(user)){
-                return <div key={message.id.toHexString()} style={{alignSelf:"right"}}><MessageDetailed message={message}></MessageDetailed></div>;
-                    }else{
                     return <div key={message.id.toHexString()}><MessageDetailed message={message}></MessageDetailed></div>;
-                    }
                 })}
 
             </Card>

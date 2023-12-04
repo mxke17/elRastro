@@ -15,7 +15,7 @@ export async function ChatMini(props: chatsMiniProps){
     }
 return<>
         <Container style={{marginTop: "20px", marginLeft:"20px"}}>
-        <p>{seller.UserName} <Link href = {`/chats/${chats.id.toHexString()}`} style={{marginLeft:"10px"}}><button>Acceder</button></Link></p>
+        <p>{seller.UserName}     <Link href = {`/chats/${chats.id.toHexString()}`} style={{marginLeft:"10px"}}><button>Acceder</button></Link></p>
         </Container>
         </>;
     
