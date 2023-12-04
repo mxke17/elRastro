@@ -84,3 +84,23 @@ export async function GetAllMessagesFromChat(id: string){
 
 
 }
+
+/*
+export async function PostMessage(formData){
+
+    
+    if(message != ""){
+try{
+    const response = await fetch("https://el-rastro-b02.vercel.app/api/messages",{method:"POST", body: JSON.stringify({
+        Message: message,
+        Sender: sender,
+        Chat: chat
+    })
+    });
+    console.log(response);
+}catch(err){
+    console.log(err);
+}
+}
+}
+*/

@@ -7,7 +7,8 @@ export default async function chats(){
     const allChats = await GetAllChatsOfUser(userId);
 
     if(allChats===null){
-        return <h1>ERROR</h1>;
+        
+        return<><NavbarHome></NavbarHome><FooterHome></FooterHome> <h1>There are no Chats available</h1></>;
    }
     return <>
         <NavbarHome></NavbarHome>

@@ -8,15 +8,17 @@ interface MessageListProp{
 
 
 export function MessageList(props: MessageListProp){
-
     
     return <>
     <Container className ="align-bottom" style={{minHeight: "700px",maxHeight:"700", maxWidth:"800px", marginTop:"100px"}}>
+        
         <Card style={{height:"500px"}}>
-                {props.messageList.map(message => {
+        <Row>
+            {
+                props.messageList.map(message => {
                     return <div key={message.id.toHexString()}><MessageDetailed message={message}></MessageDetailed></div>;
                 })}
-
+        </Row>
             </Card>
             <br></br>
             <Form>
