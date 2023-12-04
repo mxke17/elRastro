@@ -13,6 +13,10 @@ export default async function auction(){
     }
 
     const bidMaxima = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
+
+    if(!bidMaxima){
+        return <>PUJA NO ENCONTRADA</>;
+    }
     
 
     return <>
