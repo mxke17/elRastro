@@ -23,13 +23,14 @@ export function NavbarHome() {
                             <NavDropdown.Item href="#action3">Mis subastas</NavDropdown.Item>
                             <NavDropdown.Item href="#action3">Mis pujas</NavDropdown.Item>
                             <NavDropdown.Item href="/chats">Mis Chats</NavDropdown.Item>
+                            <NavDropdown.Item href="#action5"> Mis reviews</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action5">
-                                Mis reviews
+                            <NavDropdown.Item href="/">
+                                Cerrar sesión
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <div className="d-flex"><Button variant="success">Nueva subasta</Button></div>
+                    <div className="d-flex"><Button href="/newAuction" variant="success">Nueva subasta</Button></div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

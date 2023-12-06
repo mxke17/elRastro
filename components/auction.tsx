@@ -14,7 +14,7 @@ export function AuctionMini(props: auctionMiniProps) {
         <Card style={{ marginBottom: "20px" }}>
             <Figure.Image
                 style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
-                src="/pruebaFoto.jpg"
+                src={auction.Picture}
             />
             <Card.Body>
                 <Card.Title><Card.Link href={`/auction/${auction.ID.toString()}`} style={{ textDecoration: "underline", color: "black" }}>

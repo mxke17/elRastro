@@ -31,9 +31,6 @@ export default function Login() {
                             <Form.Label>Contraseña</Form.Label>
                             <Form.Control type="password"/>
                         </div>
-                        <div className="mb-3">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </div>
                         <Button variant="primary" type="submit">
                             Iniciar sesión
                         </Button>
