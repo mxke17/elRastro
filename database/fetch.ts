@@ -6,6 +6,7 @@ if(!backendUri) {
 }
 
 export async function Get(path: string) {
-
+    console.log("Get");
+    console.log(backendUri + path);
     return await fetch(backendUri + path);
 }

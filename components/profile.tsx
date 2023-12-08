@@ -3,7 +3,9 @@
 //"use client";
 import { Address, AddressJSON } from "@/database/address";
 import { Auction, AuctionJSON } from "@/database/auctions";
+import { Bid, BidJSON } from "@/database/bid";
 import { User, UserJSON } from "@/database/users";
+import { ReviewJSON, Review } from "@/database/reviews";
 //import './TuEstilo.css'; // Asegúrate de tener un archivo de estilo personalizado
 import React from "react";
 
@@ -11,13 +13,18 @@ interface profileProps {
   user: UserJSON;
   address: AddressJSON;
   auctions: AuctionJSON[];
-  bids : BidsJSON[];
+  bids : BidJSON[];
+  auctionsAchieved: AuctionJSON[];
+  //reviews: ReviewJSON[];
 }
 
 export async function Profile(props: profileProps) {
   const user = User.FromJSON(props.user);
   const address = Address.FromJSON(props.address);
   const auctions = props.auctions.map(auction => Auction.FromJSON(auction));
+  const bids = props.bids.map(bid => Bid.FromJSON(bid));
+  const auctionsAchieved = props.auctionsAchieved.map(auction => Auction.FromJSON(auction));
+  //const reviews = props.reviews.map(review => Review.FromJSON(review));
 
   
   
@@ -50,15 +57,15 @@ export async function Profile(props: profileProps) {
                     <p className="small text-muted mb-0">Subastas publicadas</p>
                   </div>
                   <div className="px-3">
-                    <p className="mb-1 h5">Pujas(user).size</p>
+                    <p className="mb-1 h5">{bids.length}</p>
                     <p className="small text-muted mb-0">Pujas realizadas</p>
                   </div>
                   <div>
-                    <p className="mb-1 h5">Pujas.(user).last</p>
-                    <p className="small text-muted mb-0">Pujas conseguidas</p>
+                    <p className="mb-1 h5">{auctionsAchieved.length}</p>
+                    <p className="small text-muted mb-0">Subastas conseguidas</p>
                   </div>
                   <div>
-                    <p className="mb-1 h5">Subastas(user).size</p>
+                    <p className="mb-1 h5">{}</p>
                     <p className="small text-muted mb-0">Reviews</p>
                   </div>
                 </div>

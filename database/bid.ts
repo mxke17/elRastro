@@ -4,6 +4,14 @@ import { Get } from "./fetch";
 
 const PATH = "pujas";
 
+export interface BidJSON {
+    _id: string,
+    Fecha: string,
+    Cantidad: number,
+    Postor: string,
+    Subasta: string,
+}
+
 export class Bid {
     ID: ObjectId;
     Date: Date;
@@ -34,6 +42,15 @@ export class Bid {
             json["Subasta"],
         );
     }
+    ToJSON():BidJSON{
+        return {
+            _id: this.ID.toHexString(),
+            Fecha: this.Date.toISOString(),
+            Cantidad: this.Quantity,
+            Postor: this.Bidder.toHexString(),
+            Subasta: this.Auction.toHexString(),
+        };
+    }
 }
 
 export async function GetHighestBidForAuction(auctionID: string) {
@@ -51,15 +68,16 @@ export async function GetHighestBidForAuction(auctionID: string) {
 }
 
 export async function GetAllBidsOfUser(userID: string) {
-    const response = await Get(`${PATH}/usuario/${userID}`);
-//    console.log(`${PATH}/subastas/usuario/${userID}`);
+    const response = await Get(`${PATH}/postor/${userID}`);
+    //console.log("pujas de usuario ");
+    //console.log(`${PATH}/postor/${userID}`);
     try {
         const json = (await response.json()) as any[];
-        console.log("Pujas de usuario");
-        console.log(json);
+        //console.log("Pujas de usuario");
+        //console.log(json);
         return json.map((x: any) => Bid.FromJSON(x));
     } catch(_) {
-        console.log("error subastas de usuario");
+        console.log("error pujas de usuario");
         console.log(_);
         return null;
     }
