@@ -84,3 +84,15 @@ export async function GetAllUsers() {
         return null;
     }
 }
+
+export async function GetBuyersOfUser(id: string){
+    const response = await Get(`${PATH}/${id}/compradoresDeUsuario`);
+
+    try {
+        const json = (await response.json()) as any[];
+        
+        return json.map((x: any) => User.FromJSON(x));
+    } catch(_) {
+        return null;
+    }
+}

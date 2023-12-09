@@ -103,3 +103,21 @@ export async function GetAverageScoreOfUser(userID: string) {
         return null;
     }
 }
+
+export async function SetScoreOfUserFromBuyer(userID: string, buyerID: string, score: number) {
+    const response = await Post(`${PATH}/`);
+    console.log("puntuar usuario");
+    console.log(`${PATH}/vendedor/${userID}/comprador/${buyerID}/puntuar/${score}`);
+    try {
+        const json = await response.json();
+        console.log("puntuar usuario2");
+        console.log(json);
+        
+
+        if (!json["averageScore"]) { return null; }
+
+        return json["averageScore"];
+    } catch (_) {
+        return null;
+    }
+}
