@@ -50,6 +50,7 @@ export default async function home() {
 //reviews={mappedReviews}
    return <>
         <NavbarHome></NavbarHome>
+        <p>HOLAAA</p>
 
     
         <Profile user={user.ToJSON()} address={address.ToJSON()} auctions={mappedAuctions} bids={mappedBids} auctionsAchieved={mappedAuctionsAchieved} ></Profile>

@@ -77,6 +77,17 @@ export class Auction {
     }
 }
 
+export async function GetAuctionsByTitle(title:string) {
+    const response = await Get(`${PATH}?titulo=${title}`);
+    
+    try {
+        const json = (await response.json()) as any[];
+        return json.map((x: any) => Auction.FromJSON(x));
+    } catch(_) {
+        return null;
+    }
+}
+
 export async function GetAuction(id: string) {
     const response = await Get(`${PATH}/${id}`);
 
@@ -94,12 +105,21 @@ export async function GetAuction(id: string) {
 
 
 export async function GetAllAuctions() {
-    const response = await Get(PATH);
-    console.log("Todas las subastas");
-    console.log(response);
+    const response = await Get(`${PATH}`);
+    
     try {
         const json = (await response.json()) as any[];
+        return json.map((x: any) => Auction.FromJSON(x));
+    } catch(_) {
+        return null;
+    }
+}
 
+export async function GetAllAuctionsWithSpecificState(state: string) {
+    const response = await Get(`${PATH}?estado=${state}`);
+
+    try {
+        const json = (await response.json()) as any[];
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
         return null;
@@ -121,6 +141,8 @@ export async function GetAllAuctionsOfUser(userID: string) {
         return null;
     }
 }
+
+
 export async function GetAllAuctionsOfBuyer(userID: string) {
     const response = await Get(`${PATH}/comprador/${userID}`);
 //    console.log(`${PATH}/subastas/usuario/${userID}`);

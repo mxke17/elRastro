@@ -18,13 +18,9 @@ export function NewAuction() {
         if (date > startDate) {
             setEndDate(date);
         } else {
-            // Si la fecha de finalización no es válida, puedes manejarlo de diferentes maneras,
-            // por ejemplo, mostrando un mensaje de error o desactivando el botón de enviar.
             alert("La fecha de finalización debe ser posterior a la fecha de inicio.");
         }
     };
-
-
 
     return (
         <Card style={{ marginBottom: "20px" }}>
