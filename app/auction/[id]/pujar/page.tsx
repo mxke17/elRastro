@@ -18,7 +18,7 @@ export default async function auction(context: RouteContext<RouteParams>){
     }
 
     let bidMaxima = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
-    let valorMinimo = 0;
+    let valorMinimo = auctionDetallada.InitialPrice;;
     if(bidMaxima){
         valorMinimo = bidMaxima.Quantity;
     }
