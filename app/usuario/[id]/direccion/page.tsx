@@ -1,31 +1,19 @@
-
-
 import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { MapSergio } from "@/components/mapSergio";
-import { GetAllUsers, GetUser } from "@/database/users";
-import { RouteContext } from "@/lib/route";
-//import { AuctionList } from "@/components/auctionList";
-import { GetAddress } from "@/database/address";
+import { NavbarHome } from "@/components/navbar";
 
-//interface RouteParams {
-    //id: string
-//}
-//context: RouteContext<RouteParams>
-export default  function home() {
-  //  const userID = context.params.id;
-    
-    
-   
-    
-//
-   return <>
-        <NavbarHome></NavbarHome>
-        <p>hola</p>
 
-       <div> <MapSergio></MapSergio></div>
+export default function home() {
+	return <>
+		<NavbarHome></NavbarHome>
+		<p>hola</p>
 
-        <FooterHome></FooterHome>
-    </>;
+		<div style={{width:"100%", height:"200px", backgroundColor:"red"}}>
+			<MapSergio></MapSergio>
+		</div>
+		
+
+		<FooterHome></FooterHome>
+	</>;
 }
 
