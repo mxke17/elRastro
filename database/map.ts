@@ -2,67 +2,134 @@
 import { ObjectId } from "mongodb";
 import { Get } from "./fetch";
 
-const PATH = "pujas";
+const PATH = "mapa/direccion";
 
-export interface BidJSON {
-    _id: string,
-    Fecha: string,
-    Cantidad: number,
-    Postor: string,
-    Subasta: string,
+export interface MapJSON {
+    place_id: number,
+    licence: string,
+    osm_type: string,
+    osm_id: number,
+    lat: string,
+    lon: string,
+    
+    type: string,
+    place_rank: number,
+    importance: number,
+    addresstype: string,
+    name: string,
+    display_name: string,
+    boundingbox: string[],
 }
 
-export class Bid {
-    ID: ObjectId;
-    Date: Date;
-    Quantity: number;
-    Bidder: ObjectId;
-    Auction: ObjectId;
+export class Map {
+
+    
+    Place_id: number;
+    Licence: string;
+    Osm_type: string;
+    Osm_id: number;
+    Lat: string;
+    Lon: string;
+    
+    Type: string;
+    Place_rank: number;
+    Importance: number;
+    Addresstype: string;
+    Name: string;
+    Display_name: string;
+    Boundingbox: string[];
+
+   
 
     constructor(
-        id: string,
-        date: Date,
-        quantity: number,
-        bidder: string,
-        auction: string
+        
+        place_id: number,
+        licence: string,
+        osm_type: string,
+        osm_id: number,
+        lat: string,
+        lon: string,
+        
+        type: string,
+        place_rank: number,
+        importance: number,
+        addresstype: string,
+        name: string,
+        display_name: string,
+        boundingbox: string[],
     ) {
-        this.ID = ObjectId.createFromHexString(id);
-        this.Date = new Date(date);
-        this.Quantity = quantity;
-        this.Bidder = ObjectId.createFromHexString(bidder);
-        this.Auction = ObjectId.createFromHexString(auction);
+        
+        this.Place_id = place_id;
+        this.Licence = licence;
+        this.Osm_type = osm_type;
+        this.Osm_id = osm_id;
+        this.Lat = lat;
+        this.Lon = lon;
+        
+        this.Type = type;
+        this.Place_rank = place_rank;
+        this.Importance = importance;
+        this.Addresstype = addresstype;
+        this.Name = name;
+        this.Display_name = display_name;
+        this.Boundingbox = boundingbox;
     }
 
     static FromJSON(json: any) {
-        return new Bid(
-            json["_id"],
-            json["Fecha de puja"],
-            json["Cantidad"],
-            json["Postor"],
-            json["Subasta"],
+        return new Map(
+            
+            json["place_id"],
+            json["licence"],
+            json["osm_type"],
+            json["osm_id"],
+            json["lat"],
+            json["lon"],
+            json["type"],
+            json["place_rank"],
+            json["importance"],
+            json["addresstype"],
+            json["name"],
+            json["display_name"],
+            json["boundingbox"],
         );
+            
+    
     }
-    ToJSON():BidJSON{
+    ToJSON():MapJSON{
         return {
-            _id: this.ID.toHexString(),
-            Fecha: this.Date.toISOString(),
-            Cantidad: this.Quantity,
-            Postor: this.Bidder.toHexString(),
-            Subasta: this.Auction.toHexString(),
+            
+            place_id: this.Place_id,
+            licence: this.Licence,
+            osm_type: this.Osm_type,
+            osm_id: this.Osm_id,
+            lat: this.Lat,
+            lon: this.Lon,
+            
+            type: this.Type,
+            place_rank: this.Place_rank,
+            importance: this.Importance,
+            addresstype: this.Addresstype,
+            name: this.Name,
+            display_name: this.Display_name,
+            boundingbox: this.Boundingbox,
+           
         };
     }
 }
 
-export async function GetHighestBidForAuction(auctionID: string) {
-    const response = await Get(`subastas/${auctionID}/pujaMasAlta`);
+export async function GetMap(addressID: string): Promise<Map | null> {    
+    const response = await Get(`${PATH}/${addressID}`);
 
     try {
         const json = await response.json();
-
-        if (!json["_id"]) { return null; }
-
-        return Bid.FromJSON(json);
-    } catch (_) {
+        console.log(json);
+        console.log("ento getmap");
+        return Map.FromJSON(json);
+        
+    } catch(_) {
         return null;
     }
+    
 }
+
+
