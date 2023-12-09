@@ -8,6 +8,7 @@ import { User, UserJSON } from "@/database/users";
 import { ReviewJSON, Review } from "@/database/reviews";
 //import './TuEstilo.css'; // Asegúrate de tener un archivo de estilo personalizado
 import React from "react";
+import { AuctionList } from "./auctionList";
 
 interface profileProps {
   user: UserJSON;
@@ -85,6 +86,7 @@ export async function Profile(props: profileProps) {
                 </div>
                 <div className="row">
                   {/* Aquí puedes agregar contenido para las subastas recientes */}
+                  <AuctionList auctions={auctions}></AuctionList>
                 </div>
               </div>
             </div>

@@ -20,7 +20,7 @@ export default async function home() {
     const auctionsAchieved = await GetAllAuctionsOfBuyer("653be37c5ee549bea86cd466");
     const reviews = await GetAllReviewsOfUser("653be37c5ee549bea86cd466");
     const reviewsScore = await GetAverageScoreOfUser("653be37c5ee549bea86cd466");
-    console.log("averageScore: " + reviewsScore);
+    
     
 //console.log(auctions?.length);
    if(user===null){
