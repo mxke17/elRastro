@@ -15,7 +15,9 @@ interface profileProps {
   auctions: AuctionJSON[];
   bids : BidJSON[];
   auctionsAchieved: AuctionJSON[];
-  //reviews: ReviewJSON[];
+  reviews: ReviewJSON[];
+  reviewsScore: number;
+  
 }
 
 export async function Profile(props: profileProps) {
@@ -24,12 +26,14 @@ export async function Profile(props: profileProps) {
   const auctions = props.auctions.map(auction => Auction.FromJSON(auction));
   const bids = props.bids.map(bid => Bid.FromJSON(bid));
   const auctionsAchieved = props.auctionsAchieved.map(auction => Auction.FromJSON(auction));
-  //const reviews = props.reviews.map(review => Review.FromJSON(review));
+  const reviews = props.reviews.map(review => Review.FromJSON(review));
+  const reviewsScore = props.reviewsScore;
+  
 
   
   
 
-
+//
   return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#0000" }}>
       <div className="py-5 h-100 container">
@@ -65,8 +69,12 @@ export async function Profile(props: profileProps) {
                     <p className="small text-muted mb-0">Subastas conseguidas</p>
                   </div>
                   <div>
-                    <p className="mb-1 h5">{}</p>
+                    <p className="mb-1 h5">{reviews.length}</p>
                     <p className="small text-muted mb-0">Reviews</p>
+                  </div>
+                  <div>
+                    <p className="mb-1 h5">{reviewsScore}</p>
+                    <p className="small text-muted mb-0">Valoracion media</p>
                   </div>
                 </div>
               </div>

@@ -77,11 +77,29 @@ export async function GetAllReviewsOfUser(userID: string) {
     try {
         const json = (await response.json()) as any[];
         //console.log("Pujas de usuario");
-        console.log(json);
+        //console.log(json);
         return json.map((x: any) => Review.FromJSON(x));
     } catch(_) {
         console.log("error reviews de usuario");
         console.log(_);
+        return null;
+    }
+}
+
+export async function GetAverageScoreOfUser(userID: string) {
+    const response = await Get(`${PATH}/vendedor/${userID}/media`);
+    console.log("media de usuario1");
+    console.log(`${PATH}/vendedor/${userID}/media`);
+    try {
+        const json = await response.json();
+        console.log("media de usuario2");
+        console.log(json["averageScore"]);
+        
+
+        if (!json["averageScore"]) { return null; }
+
+        return json["averageScore"];
+    } catch (_) {
         return null;
     }
 }
