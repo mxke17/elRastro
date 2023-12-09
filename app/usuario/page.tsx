@@ -20,7 +20,7 @@ export default async function home() {
     const auctionsAchieved = await GetAllAuctionsOfBuyer("653be37c5ee549bea86cd466");
     const reviews = await GetAllReviewsOfUser("65510cc12ff250a1f12645c6");
     
-    console.log(auctions?.length);
+//console.log(auctions?.length);
    if(user===null){
         return notFound();
     }
@@ -39,10 +39,10 @@ export default async function home() {
  
 
     const mappedAuctions = auctions.map(auction => auction.ToJSON());
-    console.log(mappedAuctions);
+    //console.log(mappedAuctions);
 
     const mappedBids = bids.map(bid => bid.ToJSON());
-    console.log(mappedBids);
+    //console.log(mappedBids);
 
     const mappedAuctionsAchieved = auctionsAchieved.map(auction => auction.ToJSON());
     //const mappedReviews = reviews.map(review => review.ToJSON());
@@ -50,9 +50,7 @@ export default async function home() {
 //reviews={mappedReviews}
    return <>
         <NavbarHome></NavbarHome>
-        <p>HOLAAA</p>
 
-    
         <Profile user={user.ToJSON()} address={address.ToJSON()} auctions={mappedAuctions} bids={mappedBids} auctionsAchieved={mappedAuctionsAchieved} ></Profile>
 
         <FooterHome></FooterHome>

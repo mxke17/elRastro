@@ -21,7 +21,6 @@ export function AuctionMini(props: auctionMiniProps) {
                     {auction.Title}
                 </Card.Link></Card.Title>
                 <Card.Text>Precio partida: {auction.InitialPrice} €</Card.Text>
-                <Card.Text>Vendedor:</Card.Text>
             </Card.Body>
         </Card>
     </>;
