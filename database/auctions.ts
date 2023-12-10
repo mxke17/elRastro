@@ -116,12 +116,38 @@ export async function GetAuction(id: string) {
 }
 
 
-export async function GetAllAuctions(params: AuctionFilter | null) {
+export async function GetAllAuctions(params?: AuctionFilter | null) {
     const queryParams: string[] = [];
 
     if(params) {
         if(params.Title) {
-            queryParams.push(`title=${params.Title}`);
+            queryParams.push(`titulo=${params.Title}`);
+        }
+
+        if(params.MinPrice) {
+            queryParams.push(`minPrice=${params.MinPrice}`);
+        }
+
+        if(params.MaxPrice) {
+            queryParams.push(`maxPrice=${params.MaxPrice}`);
+        }
+    }
+    const response = await Get(PATH + (queryParams.length > 0? "?" + queryParams.join("&") : ""));
+    
+    try {
+        const json = (await response.json()) as any[];
+        return json.map((x: any) => Auction.FromJSON(x));
+    } catch(_) {
+        return null;
+    }
+}
+
+export async function GetAllAuctionsWithSpecificState(state: string, params?: AuctionFilter | null) {
+    const queryParams: string[] = [`estado=${state}`];
+
+    if(params) {
+        if(params.Title) {
+            queryParams.push(`titulo=${params.Title}`);
         }
 
         if(params.MinPrice) {
@@ -133,23 +159,13 @@ export async function GetAllAuctions(params: AuctionFilter | null) {
         }
     }
 
-    const response = await Get(PATH + (queryParams.length > 0? queryParams.join("&") : ""));
-    
-    try {
-        const json = (await response.json()) as any[];
-        return json.map((x: any) => Auction.FromJSON(x));
-    } catch(_) {
-        return null;
-    }
-}
-
-export async function GetAllAuctionsWithSpecificState(state: string) {
-    const response = await Get(`${PATH}?estado=${state}`);
+    const response = await Get(PATH + (queryParams.length > 0? "?" + queryParams.join("&") : ""));
 
     try {
         const json = (await response.json()) as any[];
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
+        console.log(_);
         return null;
     }
 }
