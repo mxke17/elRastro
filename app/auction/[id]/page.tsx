@@ -1,3 +1,4 @@
+
 import { AuctionDetailed, AuctionMini } from "@/components/auction";
 import { BidMasAlta } from "@/components/bid";
 import { FooterHome } from "@/components/footer";
@@ -14,7 +15,7 @@ interface RouteParams {
 }
 
 export default async function auction(context: RouteContext<RouteParams>){
-    
+   
     const auctionDetallada = await GetAuction(context.params.id);
 
     if(!auctionDetallada){
