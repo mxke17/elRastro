@@ -46,8 +46,8 @@ export async function ProfilePujas(props: profileProps) {
                                     </button>
                                 </div>
                                 <div className="ms-4" style={{ marginTop: "130px" }}>
-                                    <h5>{user.UserName}</h5>
-                                    <a href="/usuario/653be37c5ee549bea86cd466/direccion">{address.Localidad}</a>
+                                <h5>{user.UserName}</h5>
+                                <a href={`/usuario/${user.ID}/direccion`}> {address.Localidad} </a>
                                 </div>
                             </div>
                             <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>
@@ -55,13 +55,13 @@ export async function ProfilePujas(props: profileProps) {
                                     <div className="px-3">
                                         <div>
                                             <p className="mb-1 h5">{auctions.length}</p>
-                                            <p className="small text-muted mb-0">Subastas publicadas</p>
+                                            <a href={`/usuario/${user.ID}`} className="small text-muted mb-0">Subastas publicadas</a>
                                         </div>
                                     </div>
                                     <div className="px-3">
                                         <div>
                                             <p className="mb-1 h5">{bids.length}</p>
-                                            <p className="small text-muted mb-0">Pujas realizadas</p>
+                                            <a href={`/usuario/${user.ID}/pujas`} className="small text-muted mb-0"   >Pujas realizadas</a>
                                         </div>
                                     </div>
                                     <div className="px-3">

@@ -47,48 +47,46 @@ export async function Profile(props: profileProps) {
                 </div>
                 <div className="ms-4" style={{ marginTop: "130px" }}>
                   <h5>{user.UserName}</h5>
-                  <a href="/usuario/653be37c5ee549bea86cd466/direccion">{address.Localidad}</a>
+                  <a href={`/usuario/${user.ID}/direccion`}> {address.Localidad} </a>
                 </div>
               </div>
               <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>
-                <div className="d-flex justify-content-center text-center">
-                  <div className="px-3">
-                    <div>
-                      <p className="mb-1 h5">{auctions.length}</p>
-                      <p className="small text-muted mb-0">Subastas publicadas</p>
-                    </div>
+                <div className="px-3">
+                  <div>
+                    <p className="mb-1 h5">{auctions.length}</p>
+                    <a href={`/usuario/${user.ID}`} className="small text-muted mb-0">Subastas publicadas</a>
                   </div>
-                  <div className="px-3">
-                    <div>
-                      <p className="mb-1 h5">{bids.length}</p>
-                      <p className="small text-muted mb-0">Pujas realizadas</p>
-                    </div>
+                </div>
+                <div className="px-3">
+                  <div>
+                    <p className="mb-1 h5">{bids.length}</p>
+                    <a href={`/usuario/${user.ID}/pujas`} className="small text-muted mb-0"   >Pujas realizadas</a>
                   </div>
-                  <div className="px-3">
-                    <div>
-                      <p className="mb-1 h5">{auctionsAchieved.length}</p>
-                      <p className="small text-muted mb-0">Subastas conseguidas</p>
-                    </div>
+                </div>
+                <div className="px-3">
+                  <div>
+                    <p className="mb-1 h5">{auctionsAchieved.length}</p>
+                    <p className="small text-muted mb-0">Subastas conseguidas</p>
                   </div>
-                  <div className="px-3">
-                    <div>
-                      <p className="mb-1 h5">{reviews.length}</p>
-                      <p className="small text-muted mb-0">Reviews</p>
-                    </div>
+                </div>
+                <div className="px-3">
+                  <div>
+                    <p className="mb-1 h5">{reviews.length}</p>
+                    <p className="small text-muted mb-0">Reviews</p>
                   </div>
-                  <div className="px-3">
-                    <div>
-                      <p className="mb-1 h5">{reviewsScore}</p>
-                      <p className="small text-muted mb-0">Valoracion media</p>
-                    </div>
+                </div>
+                <div className="px-3">
+                  <div>
+                    <p className="mb-1 h5">{reviewsScore}</p>
+                    <p className="small text-muted mb-0">Valoracion media</p>
                   </div>
                 </div>
               </div>
-              <div className="card-body text-black p-4">
-                <div className="row">
-                  {/* Aquí puedes agregar contenido para las subastas recientes */}
-                  <AuctionList auctions={auctions}></AuctionList>
-                </div>
+            </div>
+            <div className="card-body text-black p-4">
+              <div className="row">
+                {/* Aquí puedes agregar contenido para las subastas recientes */}
+                <AuctionList auctions={auctions}></AuctionList>
               </div>
             </div>
           </div>
