@@ -22,3 +22,11 @@ export default async function chats(context: RouteContext<RouteParams>){
         <FooterHome></FooterHome>
     </>;
 }
+
+export async function generateStaticParams(context: RouteContext<RouteParams>) {
+    const messages = (await GetAllMessagesFromChat(context.params.id)) ?? [];
+
+    return messages.map((message) => ({
+        id: message.id.toHexString()
+    }));
+}
