@@ -29,6 +29,7 @@ export async function Profile(props: profileProps) {
   const reviews = props.reviews.map(review => Review.FromJSON(review));
   const reviewsScore = props.reviewsScore;
 
+
   //
   return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#0000" }}>

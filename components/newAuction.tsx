@@ -57,6 +57,8 @@ export function NewAuction() {
             Subastador: "653be37c5ee549bea86cd466",
             Foto: "foto1.png"
         });
+
+        window.location.href = "/home";
     };
 
     return (
@@ -65,15 +67,15 @@ export function NewAuction() {
                 <Form onSubmit={handleSumbit}>
                     <Form.Group className="mb-3" controlId="formGroupTitle">
                         <Form.Label>¿Qué vas a vender?</Form.Label>
-                        <Form.Control onChange={handleTitleChange} type="title" placeholder="Introduzca titulo" />
+                        <Form.Control onChange={handleTitleChange} type="title" placeholder="Introduzca titulo" required/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formGroupDescription">
                         <Form.Label>Detalla el producto</Form.Label>
-                        <Form.Control onChange={handleDescriptionChange} as="textarea" placeholder="Introduzca descripcion" rows={2} />
+                        <Form.Control onChange={handleDescriptionChange} as="textarea" placeholder="Introduzca descripcion" rows={2} required/>
                     </Form.Group>
                     <Form.Group controlId="formGroupMinPrice" className="mb-3">
                         <Form.Label>Precio mínimo</Form.Label>
-                        <Form.Control onChange={handlePriceChange} type="number" placeholder="Introduce el precio mínimo" min="1" />
+                        <Form.Control onChange={handlePriceChange} type="number" placeholder="Introduce el precio mínimo" min="1" required/>
                     </Form.Group>
                     <Form.Group controlId="formGroupEndDate" className="mb-3">
                         <Form.Label>Fecha y hora de finalización de la subasta </Form.Label>{" "}

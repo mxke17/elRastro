@@ -21,7 +21,7 @@ export default function Login() {
                     <Form style={{ marginBottom: "20px" }}>
                         <div className="mb-3">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" value={"prueba@uma.es"} readOnly/>
+                            <Form.Control type="email" value={"CristobalMartin@gmail.com"} readOnly/>
                             <Form.Text className="text-muted">
                                 Tu correo está más seguro con nosotros que las recetas secretas de la abuela. ¡Ni el gato las sabe!
                             </Form.Text>
