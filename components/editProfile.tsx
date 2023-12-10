@@ -1,19 +1,13 @@
 "use client";
-import { Modal, Button, Card, Form } from "react-bootstrap";
-import { User } from "@/database/users";
-import Figure from "react-bootstrap/Figure";
-import { useState } from "react";
+import { Button, Card, Form } from "react-bootstrap";
+//import { User } from "@/database/users";
 
-interface editUser {
-    user: User;
-}
-
-export function EditUser(props: editUser) {
-    const user = props.user;
-
-
-
-
+// interface editUser {
+//     user: User;
+// }
+//props: editUser
+export function EditUser() {
+    //const user = props.user;
     return <>
         <Card style={{ marginBottom: "20px" }}>
         
@@ -52,11 +46,9 @@ export function EditUser(props: editUser) {
                         //isInvalid={!!errors.file}
                         />
                         <Form.Control.Feedback type="invalid" tooltip>
-
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Button type="submit">Actualizar</Button>{" "}
-                   
                 
                 </Form>
             </Card.Body>

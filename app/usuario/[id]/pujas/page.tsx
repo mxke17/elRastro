@@ -1,7 +1,6 @@
 
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
-import { Profile } from "@/components/profile";
 import { GetAllUsers, GetUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 //import { AuctionList } from "@/components/auctionList";
@@ -12,7 +11,7 @@ import { notFound } from "next/navigation";
 import { GetAllAuctionsOfBuyer, GetAllAuctionsOfUser } from "@/database/auctions";
 import { GetAllBidsOfUser } from "@/database/bid";
 import { GetAllReviewsOfUser, GetAverageScoreOfUser } from "@/database/reviews";
-import { BidList } from "@/components/bidList";
+import { ProfilePujas } from "@/components/profilePujas";
 
 
 interface RouteParams {
@@ -57,7 +56,7 @@ export default async function home(context: RouteContext<RouteParams>) {
     return <>
         <NavbarHome></NavbarHome>
 
-        <Profile
+        <ProfilePujas
             user={user.ToJSON()}
             address={address.ToJSON()}
             auctions={mappedAuctions}
@@ -65,8 +64,8 @@ export default async function home(context: RouteContext<RouteParams>) {
             auctionsAchieved={mappedAuctionsAchieved}
             reviews={mappedReviews}
             reviewsScore={reviewsScore}
-        ></Profile>
-        <BidList bids={mappedBids}></BidList>
+        ></ProfilePujas>
+        
 
         <FooterHome></FooterHome>
     </>;

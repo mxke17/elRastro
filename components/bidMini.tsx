@@ -9,17 +9,19 @@ import { GetUser, UserJSON } from "@/database/users";
 
 interface bidProps{
     bidJSON: BidJSON;
-    //auctionJSON: AuctionJSON;
+    auctionJSON: AuctionJSON;
     userJSON: UserJSON; 
 }
 
 
 export function BidMini(props: bidProps) {
-    console.log("bidJSON");
-    console.log(props.bidJSON);
     const bid = props.bidJSON;
     const user = props.userJSON;
-    console.log(user);
+    const auction = props.auctionJSON.ToJSON();
+    console.log("subastosa");
+    console.log(auction);
+
+
     //const user =  GetUser(bid.Postor);
 
 //Hay que hacer que se muestr bonito de alguna forma las pujas()
@@ -28,7 +30,7 @@ export function BidMini(props: bidProps) {
             
             <Card.Body>
                 <Card.Title><Card.Link  style={{ textDecoration: "underline", color: "black" }}>
-                    {user.Email}                    
+                    {auction.Titulo}                    
                 </Card.Link></Card.Title>    
                 
                 <Card.Text>Cantidad Pujada: {bid.Cantidad} €</Card.Text>
