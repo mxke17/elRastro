@@ -18,42 +18,27 @@ export default async function home(context: RouteContext<RouteParams>) {
     if (user === null) {
         notFound();
     }
-	console.log("user1");
-	console.log(user);
+
 	const userJSON = user.ToJSON();
 	const address = await GetAddress(userJSON.Direccion);
-	console.log("address1");
-	console.log(address);
 	if(address === null){
-		return <h1>ERROR ADDRESS NULL</h1>;
+		notFound();
 	}
 	
     const mapa = await GetMap(address.ID.toHexString());
-    console.log("mapa1");
-    console.log(mapa);
 	if(mapa === null){
-		return <h1>ERROR MAPA NULL</h1>;
+		notFound();
 	}
-	console.log("longitud");
-	const longitud = Number(mapa.Lon);
-	const latitud = Number(mapa.Lat);
+
+	const longitud = Number(mapa.lon);
+	const latitud = Number(mapa.lat);
 	
-	console.log(longitud);
-	console.log("latitud");
-	console.log(latitud);
-	
- //address={address.ToJSON()}
 	return <>
 		<NavbarHome></NavbarHome>
 		<p>Aqui tienes la dirección:</p>
 
 		<div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
-			<MapSergio  
-			
-            longitud={longitud}
-			latitud={latitud}
-			
-			></MapSergio>
+			<MapSergio longitud={longitud} latitud={latitud}></MapSergio>
 		</div>
 		
 
