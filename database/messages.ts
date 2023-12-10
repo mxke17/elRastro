@@ -3,8 +3,19 @@ import { ObjectId } from "mongodb";
 import { Get } from "./fetch";
 
     const PATH = "messages";
-
-export class Message {
+    export interface NewMessageJSON {
+        Message:string
+        Chat: string,
+        Sender: string,
+    }
+    export interface MessageJSON {
+        _id: string
+        Message:string
+        Chat: string,
+        Sender: string,
+        Time: string
+    }
+    export class Message {
     id: ObjectId;
     message: string;
     sender: ObjectId;
@@ -28,6 +39,15 @@ export class Message {
             json["Time"]
 
         );
+    }
+    ToJSON(): MessageJSON {
+        return {
+            _id: this.id.toHexString(),
+            Message: this.message,
+            Sender: this.sender.toHexString(),
+            Chat: this.chat.toHexString(),
+            Time: this.time.toDateString()
+        };
     }
     
 }
@@ -76,7 +96,7 @@ export async function GetAllMessagesFromChat(id: string){
 
     try{
         const json = (await response.json()) as any[];
-
+        console.log(json);
         return json.map((x: any) => Message.FromJSON(x));
     }catch(_) {
         return null;
@@ -84,23 +104,3 @@ export async function GetAllMessagesFromChat(id: string){
 
 
 }
-
-/*
-export async function PostMessage(formData){
-
-    
-    if(message != ""){
-try{
-    const response = await fetch("https://el-rastro-b02.vercel.app/api/messages",{method:"POST", body: JSON.stringify({
-        Message: message,
-        Sender: sender,
-        Chat: chat
-    })
-    });
-    console.log(response);
-}catch(err){
-    console.log(err);
-}
-}
-}
-*/

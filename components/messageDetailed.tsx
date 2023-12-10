@@ -8,7 +8,7 @@ interface messageProp{
 export function MessageDetailed(props: messageProp){
     const message = props.message;
     const user = "6560e2efa244c2665df8e44c";
-    const sender = message.sender.toHexString();
+    const sender = message.sender.toString();
     if(!(user === sender)){
         return  <>
     <Container style = {{alignItems: "center", margin:"20px"}}>
