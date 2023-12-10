@@ -26,6 +26,11 @@ export interface NewAuctionJSON {
     ["Precio partida"]: number,
     Subastador: string
 }
+export interface AuctionFilter {
+    Title: string | null,
+    MinPrice: number | null,
+    MaxPrice: number | null
+}
 
 export class Auction {
     ID: ObjectId;
@@ -111,8 +116,24 @@ export async function GetAuction(id: string) {
 }
 
 
-export async function GetAllAuctions() {
-    const response = await Get(`${PATH}`);
+export async function GetAllAuctions(params: AuctionFilter | null) {
+    const queryParams: string[] = [];
+
+    if(params) {
+        if(params.Title) {
+            queryParams.push(`title=${params.Title}`);
+        }
+
+        if(params.MinPrice) {
+            queryParams.push(`minPrice=${params.MinPrice}`);
+        }
+
+        if(params.MaxPrice) {
+            queryParams.push(`maxPrice=${params.MaxPrice}`);
+        }
+    }
+
+    const response = await Get(PATH + (queryParams.length > 0? queryParams.join("&") : ""));
     
     try {
         const json = (await response.json()) as any[];
