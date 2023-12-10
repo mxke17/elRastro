@@ -1,11 +1,11 @@
 
-import { AuctionDetailed, AuctionMini } from "@/components/auction";
+import { AuctionDetailed } from "@/components/auction";
 import { BidMasAlta } from "@/components/bid";
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
-import { Auction, GetAuction } from "@/database/auctions";
+import { GetAuction } from "@/database/auctions";
 import { GetHighestBidForAuction } from "@/database/bid";
-import { GetAllUsers, GetUser } from "@/database/users";
+import { GetUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 import { notFound } from "next/navigation";
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -38,7 +38,7 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Row>
                     <Col xs={1}></Col>
                     <Col>
-                        <AuctionDetailed auction={auctionDetallada} usuario={usuario}></AuctionDetailed>
+                        <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
                         <p>Subasta finalizada! Enhorabuena, has ganado!!</p>
                         <Button href={`/usuario/${usuario.ID}/valorar/${bidMasAlta?.Bidder.toHexString()}`}>Valorar al vendedor</Button>
                         <p></p>
@@ -60,7 +60,7 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Row>
                     <Col xs={1}></Col>
                     <Col>
-                        <AuctionDetailed auction={auctionDetallada} usuario={usuario}></AuctionDetailed>
+                        <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
                         <p>Subasta finalizada</p>
                     </Col>
                     <Col xs={1}></Col>
@@ -81,7 +81,7 @@ export default async function auction(context: RouteContext<RouteParams>){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
-                <AuctionDetailed auction={auctionDetallada} usuario={usuario} ></AuctionDetailed>
+                <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()} ></AuctionDetailed>
                 Chooollo a la vista ¡Sé el primero en pujar!<br></br>
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
@@ -100,7 +100,7 @@ export default async function auction(context: RouteContext<RouteParams>){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
-                <AuctionDetailed auction={auctionDetallada} usuario={usuario}></AuctionDetailed>
+                <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
                 <BidMasAlta bid={bidMasAlta}></BidMasAlta>
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
