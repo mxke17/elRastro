@@ -47,8 +47,7 @@ export async function Profile(props: profileProps) {
                 </div>
                 <div className="ms-4" style={{ marginTop: "130px" }}>
                   <h5>{user.UserName}</h5>
-                  <p>{address.Localidad}</p>
-                  <p>Rating: 4,5 /5⭐</p>
+                  <a href="/usuario/653be37c5ee549bea86cd466/direccion">{address.Localidad}</a>
                 </div>
               </div>
               <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>

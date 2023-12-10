@@ -20,7 +20,7 @@ export function NavbarHome() {
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/chats">Chats</Nav.Link>
                         <NavDropdown title="Perfil" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Mi perfil</NavDropdown.Item>
+                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">Mi perfil</NavDropdown.Item>
                             <NavDropdown.Item href="#action3">Editar</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/">
