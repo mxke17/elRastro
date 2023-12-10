@@ -63,6 +63,8 @@ export default async function Home({
         </>;
     }
 
+    const parsedAuctions = auctions.map(auction => auction.ToJSON());
+
     return <>
         <NavbarHome></NavbarHome>
         <Container fluid="md">
@@ -70,7 +72,7 @@ export default async function Home({
                 <Col xs={1}></Col>
                 <Col>
                     <Filter></Filter>
-                    <AuctionList auctions={auctions}></AuctionList>
+                    <AuctionList auctions={parsedAuctions}></AuctionList>
                 </Col>
                 <Col xs={1}></Col>
             </Row>

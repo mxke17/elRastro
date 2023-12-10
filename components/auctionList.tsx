@@ -1,8 +1,8 @@
-import { Auction } from "@/database/auctions";
+import { AuctionJSON } from "@/database/auctions";
 import { AuctionMini } from "./auction";
 
 interface auctionListProps {
-    auctions: Auction[];
+    auctions: AuctionJSON[];
 }
 
 export function AuctionList(props: auctionListProps) {
@@ -11,7 +11,7 @@ export function AuctionList(props: auctionListProps) {
         <table style={{width:"100%"}}>
             <tbody>
                 {props.auctions.map((auction) => (
-                    <tr key={auction.ID.toHexString()}>
+                    <tr key={auction._id}>
                         <td>
                             <AuctionMini auction={auction}></AuctionMini>
                         </td>
