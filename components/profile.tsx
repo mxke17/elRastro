@@ -6,7 +6,6 @@ import { Auction, AuctionJSON } from "@/database/auctions";
 import { Bid, BidJSON } from "@/database/bid";
 import { User, UserJSON } from "@/database/users";
 import { ReviewJSON, Review } from "@/database/reviews";
-//import './TuEstilo.css'; // Asegúrate de tener un archivo de estilo personalizado
 import React from "react";
 import { AuctionList } from "./auctionList";
 
@@ -14,11 +13,11 @@ interface profileProps {
   user: UserJSON;
   address: AddressJSON;
   auctions: AuctionJSON[];
-  bids : BidJSON[];
+  bids: BidJSON[];
   auctionsAchieved: AuctionJSON[];
   reviews: ReviewJSON[];
   reviewsScore: number;
-  
+
 }
 
 export async function Profile(props: profileProps) {
@@ -29,12 +28,8 @@ export async function Profile(props: profileProps) {
   const auctionsAchieved = props.auctionsAchieved.map(auction => Auction.FromJSON(auction));
   const reviews = props.reviews.map(review => Review.FromJSON(review));
   const reviewsScore = props.reviewsScore;
-  
 
-  
-  
-
-//
+  //
   return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#0000" }}>
       <div className="py-5 h-100 container">
@@ -43,7 +38,7 @@ export async function Profile(props: profileProps) {
             <div className="card">
               <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: "#000", height: "200px" }}>
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
+                  <img src={user.Picture}
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" style={{ width: "150px", zIndex: "1" }} />
                   <button className="btn btn-outline-dark" style={{ height: "36px", overflow: "visible" }}>
                     Edit profile
@@ -80,10 +75,6 @@ export async function Profile(props: profileProps) {
                 </div>
               </div>
               <div className="card-body text-black p-4">
-                <div className="d-flex justify-content-between align-items-center mb-4">
-                  <p className="lead fw-normal mb-0">Recent auctions</p>
-                  <p className="mb-0"><a href="#!" className="text-muted">Show all</a></p>
-                </div>
                 <div className="row">
                   {/* Aquí puedes agregar contenido para las subastas recientes */}
                   <AuctionList auctions={auctions}></AuctionList>

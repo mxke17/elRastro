@@ -18,12 +18,10 @@ export function NavbarHome() {
                         navbarScroll
                     >
                         <Nav.Link href="/home">Home</Nav.Link>
+                        <Nav.Link href="/chats">Chats</Nav.Link>
                         <NavDropdown title="Perfil" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">Mi perfil</NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">Mis subastas</NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">Mis pujas</NavDropdown.Item>
-                            <NavDropdown.Item href="/chats">Mis Chats</NavDropdown.Item>
-                            <NavDropdown.Item href="#action5"> Mis reviews</NavDropdown.Item>
+                            <NavDropdown.Item href="#action3">Editar</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/">
                                 Cerrar sesión
