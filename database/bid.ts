@@ -13,7 +13,7 @@ export interface BidJSON {
 }
 
 export interface NewBidJSON {
-    ["Fecha limite"]: Date,
+    ["Fecha de puja"]: Date,
     ["Cantidad"]: number,
     Postor: string,
     Subasta: string,

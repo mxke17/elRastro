@@ -75,7 +75,7 @@ export function NewBid(props: newBidProps) {
         event.preventDefault();
 
         CreateNewBid({
-            "Fecha limite": endDate,
+            "Fecha de puja": endDate,
             "Cantidad": price,
             Postor: "653be37c5ee549bea86cd465",
             Subasta: sub
