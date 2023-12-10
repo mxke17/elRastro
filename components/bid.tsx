@@ -3,7 +3,6 @@ import { Bid } from "@/database/bid";
 import { CreateNewBid } from "@/database/bids_ops";
 import React, { FormEvent, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface bidProps {
@@ -44,16 +43,7 @@ export function BidMasAlta(props: bidProps) {
 export function NewBid(props: newBidProps) {
     const sub = props.subasta;
     console.log(sub);
-    const [subasta, setSubasta] = useState("");
     const [price, setPrice] = useState(0);
-    const [endDate, setEndDate] = useState(new Date());
-
-    const handleSubastaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const subasta = event.target.value;
-        if(subasta) {
-            setSubasta(subasta);
-        }
-    };
 
     const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const price = event.target.value;
@@ -65,17 +55,11 @@ export function NewBid(props: newBidProps) {
         }
     };
 
-    const handleEndDateChange = (date: Date | null) => {
-        if(date) {
-            setEndDate(date);
-        }
-    };
-
     const handleSumbit = (event: FormEvent) => {
         event.preventDefault();
 
         CreateNewBid({
-            "Fecha de puja": endDate,
+            "Fecha de puja": new Date(),
             "Cantidad": price,
             Postor: "653be37c5ee549bea86cd465",
             Subasta: sub
