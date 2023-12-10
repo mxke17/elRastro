@@ -19,13 +19,16 @@ export function Filter() {
                 />
                 <Card.Body>
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="primary">Buscar</Button>
+                        <Form>
+                            <Form.Control
+                                name="title"
+                                type="search"
+                                placeholder="Search"
+                                className="me-2"
+                                aria-label="Search"
+                            />
+                            <Button type="submit" variant="primary">Buscar</Button>
+                        </Form>
                     </div>
                     <Card.Body>¿Demasiadas pujas? Use nuestros {" "}
                         <Button variant="outline-primary" size="sm" onClick={handleShow}> filtros </Button>

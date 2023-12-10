@@ -46,13 +46,14 @@ export default async function Home({
 
     const auctions = await GetAllAuctionsWithSpecificState("running", auctionFilter);
 
-    if (auctions === null) {
+    if (auctions === null || auctions.length === 0) {
         return <>
             <NavbarHome></NavbarHome>
             <Container fluid="md">
                 <Row>
                     <Col xs={1}></Col>
                     <Col>
+                        <Filter></Filter>
                         <h4>Actualmente no existen subastas disponibles</h4>
                     </Col>
                     <Col xs={1}></Col>
