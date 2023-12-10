@@ -16,3 +16,10 @@ export default async function chats(){
         <FooterHome></FooterHome>
     </>;
 }
+export async function generateStaticParams() {
+    const chats = (await GetAllChatsOfUser( "653be37c5ee549bea86cd462")) ?? [];
+
+    return chats.map((chat) => ({
+        id: chat.id.toHexString()
+    }));
+}

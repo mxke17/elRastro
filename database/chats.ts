@@ -4,6 +4,11 @@ import { Get } from "./fetch";
 
     const PATH = "chats";
 
+    export interface NewChatJSON {
+        User: string
+        Seller: string,
+    }
+
 export class Chat {
     id: ObjectId;
     user: ObjectId;
@@ -59,7 +64,7 @@ export async function GetAllChatsOfUser(userID: string) {
 
     try {
         const json = (await response.json()) as any[];
-        
+        console.log(json);
         return json.map((x: any) => Chat.FromJSON(x));
     } catch(_) {
         return null;
