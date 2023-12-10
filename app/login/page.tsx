@@ -21,7 +21,7 @@ export default function Login() {
                     <Form style={{ marginBottom: "20px" }}>
                         <div className="mb-3">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email"/>
+                            <Form.Control type="email" value={"prueba@uma.es"} readOnly/>
                             <Form.Text className="text-muted">
                                 Tu correo está más seguro con nosotros que las recetas secretas de la abuela. ¡Ni el gato las sabe!
                             </Form.Text>
@@ -29,9 +29,9 @@ export default function Login() {
 
                         <div className="mb-3">
                             <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type="password"/>
+                            <Form.Control type="password" value={"superSecreta"} readOnly/>
                         </div>
-                        <Button variant="primary" type="submit">
+                        <Button href="/home" variant="primary" type="submit">
                             Iniciar sesión
                         </Button>
                     </Form>
