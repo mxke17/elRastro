@@ -1,6 +1,6 @@
 // Las cosas de bootstrap, hay que renderizarlas en el server, por eso se importan aquí
 //
-//"use client";
+"use client";
 
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
