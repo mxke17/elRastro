@@ -1,17 +1,17 @@
 "use client";
-import { Auction } from "@/database/auctions";
+import { AuctionJSON } from "@/database/auctions";
 import { CreateNewChat } from "@/database/chat_ops";
-import { User, UserJSON } from "@/database/users";
+import { UserJSON } from "@/database/users";
 import { Button, Card, Form } from "react-bootstrap";
 import Figure from "react-bootstrap/Figure";
 
 interface auctionMiniProps {
-    auction: Auction;
-    usuario: User;
+    auction: AuctionJSON;
 }
 
-interface usuarioProps {
-    usuario: User;
+interface auctionDetailedProps {
+    auction: AuctionJSON;
+    usuario: UserJSON;
 }
 
 export function AuctionMini(props: auctionMiniProps) {
@@ -21,13 +21,13 @@ export function AuctionMini(props: auctionMiniProps) {
         <Card style={{ marginBottom: "20px" }}>
             <Figure.Image
                 style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
-                src={auction.Picture}
+                src={auction.Foto}
             />
             <Card.Body>
-                <Card.Title><Card.Link href={`/auction/${auction.ID.toString()}`} style={{ textDecoration: "underline", color: "black" }}>
-                    {auction.Title}
+                <Card.Title><Card.Link href={`/auction/${auction._id}`} style={{ textDecoration: "underline", color: "black" }}>
+                    {auction.Titulo}
                 </Card.Link></Card.Title>
-                <Card.Text>Precio partida: {auction.InitialPrice} €</Card.Text>
+                <Card.Text>Precio partida: {auction["Precio partida"]} €</Card.Text>
             </Card.Body>
         </Card>
     </>;
@@ -35,43 +35,43 @@ export function AuctionMini(props: auctionMiniProps) {
 
 
 
-export function AuctionDetailed(props: auctionMiniProps){
-    const handleChatSubmit = (e:React.FormEvent) => {
+export function AuctionDetailed(props: auctionDetailedProps) {
+    const handleChatSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const  seller =  auction.Seller.toString();
-        CreateNewChat({User:"653be37c5ee549bea86cd462", Seller:seller});
+        const seller = auction.Subastador;
+        CreateNewChat({ User: "653be37c5ee549bea86cd462", Seller: seller });
         window.location.href = "/chats";
-    };  
+    };
     const auction = props.auction;
     const usuario = props.usuario;
     return <>
-         <div
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        margin: "16px",
-        padding: "16px",
-        backgroundColor: "#fff",
-        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      <div style={{ marginBottom: "16px" }}>
-        <h2>{auction.Title}</h2>
-        <p>{auction.Description}</p>
-      </div>
+        <div
+            style={{
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                margin: "16px",
+                padding: "16px",
+                backgroundColor: "#fff",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+            }}
+        >
+            <div style={{ marginBottom: "16px" }}>
+                <h2>{auction.Titulo}</h2>
+                <p>{auction.Descripcion}</p>
+            </div>
 
-        <div>
-        <Figure.Image
-                style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
-                src={`${auction.Picture}`}/>
-            <p>Vendedor: <a href={`/usuario/${usuario.ID}`}>{usuario.UserName}</a></p>
-            <p>Precio inicial: {auction.InitialPrice}</p>
-            <p>Fecha de cierre: {auction.Deadline.toString()}</p>
+            <div>
+                <Figure.Image
+                    style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
+                    src={`${auction.Foto}`} />
+                <p>Vendedor: <a href={`/usuario/${usuario._id}`}>{usuario["Nombre usuario"]}</a></p>
+                <p>Precio inicial: {auction["Precio partida"]}</p>
+                <p>Fecha de cierre: {auction["Fecha limite"].toString()}</p>
+            </div>
+            <Form onSubmit={handleChatSubmit}>
+                <Button type="submit">Chat</Button>
+            </Form>
         </div>
-      <Form onSubmit={handleChatSubmit}>
-        <Button type="submit">Chat</Button>
-      </Form>
-    </div>
 
     </>;
 }
