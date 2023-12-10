@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Card, Figure, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -9,6 +9,12 @@ export function Filter() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSumbit = (event: FormEvent) => {
+    event.preventDefault();
+    
+    window.location.href = "/home";
+};
 
   return (
     <>
@@ -36,8 +42,23 @@ export function Filter() {
               <Offcanvas.Title>FILTROS</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen. Like, text, images, lists, etc.
+              <Form>
+                <Form.Group className="mb-3" controlId="formGroupTitle">
+                  <Form.Label>¿Qué quieres comprar?</Form.Label>
+                  <Form.Control type="title" placeholder="Introduzca titulo" />
+                </Form.Group>
+                <Form.Group controlId="formGroupMaxPrice" className="mb-3">
+                  <Form.Label>Precio máximo</Form.Label>
+                  <Form.Control type="number" placeholder="Introduce el precio mínimo" min="1" />
+                </Form.Group>
+                <Form.Group controlId="formGroupMinPrice" className="mb-3">
+                  <Form.Label>Precio mínimo</Form.Label>
+                  <Form.Control type="number" placeholder="Introduce el precio mínimo" min="1" />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                  Filtrar
+                </Button>
+              </Form>
             </Offcanvas.Body>
           </Offcanvas>
         </Card.Body>
