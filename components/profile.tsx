@@ -87,7 +87,7 @@ export async function Profile(props: profileProps) {
               <div className="card-body text-black p-4">
                 <div className="row">
                   {/* Aquí puedes agregar contenido para las subastas recientes */}
-                  <AuctionList auctions={auctions}></AuctionList>
+                  <AuctionList auctions={auctions.map(auction => auction.ToJSON())}></AuctionList>
                 </div>
               </div>
             </div>

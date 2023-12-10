@@ -32,5 +32,5 @@ export function NavbarHome() {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        );
+    );
 }

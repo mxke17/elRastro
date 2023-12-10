@@ -1,7 +1,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ObjectId } from "mongodb";
-import { Get } from "./fetch";
+import { Get, Post } from "./fetch";
 
 const PATH = "reviews";
 
@@ -105,7 +105,7 @@ export async function GetAverageScoreOfUser(userID: string) {
 }
 
 export async function SetScoreOfUserFromBuyer(userID: string, buyerID: string, score: number) {
-    const response = await Post(`${PATH}/`);
+    const response = await Post(`${PATH}/`, {});
     console.log("puntuar usuario");
     console.log(`${PATH}/vendedor/${userID}/comprador/${buyerID}/puntuar/${score}`);
     try {

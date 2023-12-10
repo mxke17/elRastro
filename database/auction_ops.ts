@@ -7,4 +7,4 @@ const PATH = "subastas";
 
 export async function CreateNewAuction(auction: NewAuctionJSON) {
     return await Post(PATH, auction);
-}    
+}

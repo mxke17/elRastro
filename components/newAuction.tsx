@@ -14,7 +14,7 @@ export function NewAuction() {
     const [endDate, setEndDate] = useState(new Date());
     //const [picture, setPicture] = useState(new File());
 
-    const handleTitleChange = (event: React.ChangeEvent) => {
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const title = event.target.value;
         console.log(event.target);
         if(title) {
@@ -23,14 +23,14 @@ export function NewAuction() {
         }
     };
 
-    const handleDescriptionChange = (event: React.ChangeEvent) => {
+    const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const description = event.target.value;
         if(description) {
             setDescription(description);
         }
     };
 
-    const handlePriceChange = (event: React.ChangeEvent) => {
+    const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const price = event.target.value;
         if(price) {
             const parsedPrice = parseFloat(price);

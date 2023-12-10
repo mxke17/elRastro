@@ -10,7 +10,7 @@ export function EditUser() {
     //const user = props.user;
     return <>
         <Card style={{ marginBottom: "20px" }}>
-        
+
             <Card.Body>
                 <Card.Title>Edite su perfil</Card.Title>
                 <Form>
@@ -49,7 +49,7 @@ export function EditUser() {
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Button type="submit">Actualizar</Button>{" "}
-                
+
                 </Form>
             </Card.Body>
         </Card>

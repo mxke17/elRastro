@@ -11,8 +11,7 @@ export async function Get(path: string) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function Post(path: string, data: any) {
-    console.log(data);
-    await fetch(backendUri + path, {
+    return await fetch(backendUri + path, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",

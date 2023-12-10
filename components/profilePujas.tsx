@@ -46,8 +46,8 @@ export async function ProfilePujas(props: profileProps) {
                                     </button>
                                 </div>
                                 <div className="ms-4" style={{ marginTop: "130px" }}>
-                                <h5>{user.UserName}</h5>
-                                <a href={`/usuario/${user.ID}/direccion`}> {address.Localidad} </a>
+                                    <h5>{user.UserName}</h5>
+                                    <a href={`/usuario/${user.ID}/direccion`}> {address.Localidad} </a>
                                 </div>
                             </div>
                             <div className="p-4 text-black" style={{ backgroundColor: "#f8f9fa" }}>

@@ -1,10 +1,10 @@
 "use client";
 
-import { Bid, BidJSON } from "@/database/bid";
+import { BidJSON } from "@/database/bid";
 import { Card } from "react-bootstrap";
 import React from "react";
 import { AuctionJSON } from "@/database/auctions";
-import { GetUser, UserJSON } from "@/database/users";
+import { UserJSON } from "@/database/users";
 
 
 interface bidProps{
@@ -16,7 +16,6 @@ interface bidProps{
 
 export function BidMini(props: bidProps) {
     const bid = props.bidJSON;
-    const user = props.userJSON;
     const auction = props.auctionJSON;
     console.log("subastosa");
     console.log(auction);

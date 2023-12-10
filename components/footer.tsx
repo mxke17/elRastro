@@ -8,7 +8,7 @@ import { CDBModalFooter, CDBBtn, CDBIcon, CDBBox } from "cdbreact";
 export function FooterHome() {
     return (
         <CDBModalFooter className="shadow">
-                <CDBBox
+            <CDBBox
                 display="flex"
                 justifyContent="between"
                 alignItems="center"
