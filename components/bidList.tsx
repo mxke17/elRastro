@@ -9,7 +9,6 @@ interface bidListProps {
 
 export async function BidList(props: bidListProps) {
     
-
     return <>
         <table style={{ width: "100%" }}>
             <tbody>
