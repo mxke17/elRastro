@@ -1,5 +1,6 @@
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
+import { GetUser, GetBuyersOfUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 
 interface RouteParams {
