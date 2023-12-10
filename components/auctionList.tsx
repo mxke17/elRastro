@@ -6,6 +6,7 @@ interface auctionListProps {
 }
 
 export function AuctionList(props: auctionListProps) {
+    
     return <>
         <table style={{width:"100%"}}>
             <tbody>

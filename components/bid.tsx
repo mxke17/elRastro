@@ -1,4 +1,6 @@
-import { Bid } from "@/database/bid";
+import { Bid, BidJSON } from "@/database/bid";
+
+
 
 interface bidProps{
     bid: Bid|null;

@@ -45,7 +45,7 @@ export class Bid {
     ToJSON():BidJSON{
         return {
             _id: this.ID.toHexString(),
-            Fecha: this.Date.toISOString(),
+            Fecha: this.Date.toDateString(),
             Cantidad: this.Quantity,
             Postor: this.Bidder.toHexString(),
             Subasta: this.Auction.toHexString(),
