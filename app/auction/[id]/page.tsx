@@ -29,6 +29,49 @@ export default async function auction(context: RouteContext<RouteParams>){
 
     const bidMasAlta = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
 
+    if (auctionDetallada.Deadline.getTime() < Date.now() && bidMasAlta?.Bidder.toHexString() === usuario.ID.toHexString()) {
+        return <div>
+            <NavbarHome></NavbarHome>
+
+            <Container fluid="md">
+                <Row>
+                    <Col xs={1}></Col>
+                    <Col>
+                        <AuctionDetailed auction={auctionDetallada} usuario={usuario}></AuctionDetailed>
+                        <p>Subasta finalizada! Enhorabuena, has ganado!!</p>
+                        <Button href={`/usuario/${usuario.ID}/valorar/${bidMasAlta?.Bidder.toHexString()}`}>Valorar al vendedor</Button>
+                        <p></p>
+                    </Col>
+                    <Col xs={1}></Col>
+                </Row>
+            </Container>
+
+            <FooterHome></FooterHome>
+        </div>;
+
+    }
+
+    if (auctionDetallada.Deadline.getTime() < Date.now()) {
+        return <div>
+            <NavbarHome></NavbarHome>
+
+            <Container fluid="md">
+                <Row>
+                    <Col xs={1}></Col>
+                    <Col>
+                        <AuctionDetailed auction={auctionDetallada} usuario={usuario}></AuctionDetailed>
+                        <p>Subasta finalizada</p>
+                    </Col>
+                    <Col xs={1}></Col>
+                </Row>
+            </Container>
+
+            <FooterHome></FooterHome>
+        </div>;
+
+    }
+
+
     if(!bidMasAlta){
         return <>
         <NavbarHome></NavbarHome>

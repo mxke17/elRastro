@@ -57,9 +57,9 @@ export function AuctionDetailed(props: auctionMiniProps){
         <Figure.Image
                 style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
                 src={`${auction.Picture}`}/>
-        <p>Vendedor: <a href={`/usuario/${usuario.ID}`}>{usuario.UserName}</a></p>
-          <p>Precio inicial: {auction.InitialPrice}</p>
-          <p>Fecha de cierre: {auction.Deadline.toString()}</p>
+            <p>Vendedor: <a href={`/usuario/${usuario.ID}`}>{usuario.UserName}</a></p>
+            <p>Precio inicial: {auction.InitialPrice}</p>
+            <p>Fecha de cierre: {auction.Deadline.toString()}</p>
         </div>
 
     </div>
