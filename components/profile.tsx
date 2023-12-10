@@ -79,7 +79,16 @@ export async function Profile(props: profileProps) {
                   <div className="px-3">
                     <div>
                       <p className="mb-1 h5">{reviewsScore}</p>
-                      <p className="small text-muted mb-0">Valoracion media</p>
+                      <p className="small text-muted mb-0"> Valoracion media
+                        <a href={`/usuario/${user.ID.toHexString()}/valorar`}>
+                          <button
+                            className="button btn btn-outline-dark"
+
+                            style={{ height: "36px", overflow: "visible" }}
+                          >
+                            Valorar
+                          </button></a>
+                      </p>
                     </div>
                   </div>
                 </div>
