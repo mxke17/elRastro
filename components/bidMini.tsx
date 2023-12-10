@@ -17,7 +17,7 @@ interface bidProps{
 export function BidMini(props: bidProps) {
     const bid = props.bidJSON;
     const user = props.userJSON;
-    const auction = props.auctionJSON.ToJSON();
+    const auction = props.auctionJSON;
     console.log("subastosa");
     console.log(auction);
 
@@ -29,7 +29,7 @@ export function BidMini(props: bidProps) {
         <Card style={{ marginBottom: "20px" }}>
             
             <Card.Body>
-                <Card.Title><Card.Link  style={{ textDecoration: "underline", color: "black" }}>
+                <Card.Title><Card.Link href={`/auction/${auction._id}`} style={{ textDecoration: "underline", color: "black" }}>
                     {auction.Titulo}                    
                 </Card.Link></Card.Title>    
                 

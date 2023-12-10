@@ -1,7 +1,8 @@
 "use client";
 import { Auction } from "@/database/auctions";
+import { CreateNewChat } from "@/database/chat_ops";
 import { User, UserJSON } from "@/database/users";
-import { Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import Figure from "react-bootstrap/Figure";
 
 interface auctionMiniProps {
@@ -35,6 +36,12 @@ export function AuctionMini(props: auctionMiniProps) {
 
 
 export function AuctionDetailed(props: auctionMiniProps){
+    const handleChatSubmit = (e:React.FormEvent) => {
+        e.preventDefault();
+        const  seller =  auction.Seller.toString();
+        CreateNewChat({User:"653be37c5ee549bea86cd462", Seller:seller});
+        window.location.href = "/chats";
+    };  
     const auction = props.auction;
     const usuario = props.usuario;
     return <>
@@ -61,7 +68,9 @@ export function AuctionDetailed(props: auctionMiniProps){
             <p>Precio inicial: {auction.InitialPrice}</p>
             <p>Fecha de cierre: {auction.Deadline.toString()}</p>
         </div>
-
+      <Form onSubmit={handleChatSubmit}>
+        <Button type="submit">Chat</Button>
+      </Form>
     </div>
 
     </>;

@@ -1,5 +1,5 @@
 import { FooterHome } from "@/components/footer";
-import { MapSergio } from "@/components/mapSergio";
+import { Map } from "@/components/map";
 import { NavbarHome } from "@/components/navbar";
 import { GetUser } from "@/database/users";
 import { GetAddress } from "@/database/address";
@@ -38,7 +38,7 @@ export default async function home(context: RouteContext<RouteParams>) {
 		<p>Aqui tienes la dirección:</p>
 
 		<div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
-			<MapSergio longitud={longitud} latitud={latitud}></MapSergio>
+			<Map longitud={longitud} latitud={latitud}></Map>
 		</div>
 		
 
