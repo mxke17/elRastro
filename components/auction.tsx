@@ -1,10 +1,16 @@
 "use client";
 import { Auction } from "@/database/auctions";
+import { User, UserJSON } from "@/database/users";
 import { Card } from "react-bootstrap";
 import Figure from "react-bootstrap/Figure";
 
 interface auctionMiniProps {
     auction: Auction;
+    usuario: User;
+}
+
+interface usuarioProps {
+    usuario: User;
 }
 
 export function AuctionMini(props: auctionMiniProps) {
@@ -30,7 +36,7 @@ export function AuctionMini(props: auctionMiniProps) {
 
 export function AuctionDetailed(props: auctionMiniProps){
     const auction = props.auction;
-
+    const usuario = props.usuario;
     return <>
          <div
       style={{
@@ -51,6 +57,7 @@ export function AuctionDetailed(props: auctionMiniProps){
         <Figure.Image
                 style={{ objectFit: "cover", objectPosition: "center", width: "100%", height: "250px" }}
                 src={`${auction.Picture}`}/>
+        <p>Vendedor: {usuario.UserName}</p>
           <p>Precio inicial: {auction.InitialPrice}</p>
           <p>Fecha de cierre: {auction.Deadline.toString()}</p>
         </div>

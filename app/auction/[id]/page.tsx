@@ -4,6 +4,7 @@ import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
 import { Auction, GetAuction } from "@/database/auctions";
 import { GetHighestBidForAuction } from "@/database/bid";
+import { GetAllUsers, GetUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 import { notFound } from "next/navigation";
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -20,6 +21,12 @@ export default async function auction(context: RouteContext<RouteParams>){
         return notFound();
     }
 
+    const usuario = await GetUser(auctionDetallada.Seller.toHexString());
+
+    if(!usuario){
+        return notFound();
+    }
+
     const bidMasAlta = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
 
     if(!bidMasAlta){
@@ -30,7 +37,7 @@ export default async function auction(context: RouteContext<RouteParams>){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
-                <AuctionDetailed auction={auctionDetallada}></AuctionDetailed>
+                <AuctionDetailed auction={auctionDetallada} usuario={usuario} ></AuctionDetailed>
                 Chooollo a la vista ¡Sé el primero en pujar!<br></br>
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
@@ -49,7 +56,7 @@ export default async function auction(context: RouteContext<RouteParams>){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
-                <AuctionDetailed auction={auctionDetallada}></AuctionDetailed>
+                <AuctionDetailed auction={auctionDetallada} usuario={usuario}></AuctionDetailed>
                 <BidMasAlta bid={bidMasAlta}></BidMasAlta>
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
