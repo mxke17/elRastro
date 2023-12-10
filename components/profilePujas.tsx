@@ -55,13 +55,13 @@ export async function ProfilePujas(props: profileProps) {
                                     <div className="px-3">
                                         <div>
                                             <p className="mb-1 h5">{auctions.length}</p>
-                                            <a href={`/usuario/${user.ID}`} className="small text-muted mb-0">Subastas publicadas</a>
+                                            <p><a href={`/usuario/${user.ID}`} className="small text-muted mb-0">Subastas publicadas</a></p>
                                         </div>
                                     </div>
                                     <div className="px-3">
                                         <div>
                                             <p className="mb-1 h5">{bids.length}</p>
-                                            <a href={`/usuario/${user.ID}/pujas`} className="small text-muted mb-0"   >Pujas realizadas</a>
+                                            <p><a href={`/usuario/${user.ID}/pujas`} className="small text-muted mb-0"   >Pujas realizadas</a></p>
                                         </div>
                                     </div>
                                     <div className="px-3">
