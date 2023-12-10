@@ -12,6 +12,11 @@ export interface ReviewJSON {
     Puntuacion: number,
     Hecha: boolean,
 }
+export interface NewReviewJSON {
+    comprador: string,
+    vendedor: string,
+    puntuacion: string
+}
 
 export class Review {
     ID: ObjectId;
