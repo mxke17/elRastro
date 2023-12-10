@@ -1,4 +1,5 @@
 "use client";
+
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
 import { NewAuction } from "@/components/newAuction";

@@ -6,7 +6,22 @@ if(!backendUri) {
 }
 
 export async function Get(path: string) {
-    console.log("Get");
-    console.log(backendUri + path);
     return await fetch(backendUri + path);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function Post(path: string, data: any) {
+    console.log(data);
+    await fetch(backendUri + path, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data)
+    });
 }

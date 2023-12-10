@@ -17,7 +17,14 @@ export interface AuctionJSON {
     Foto: string,
     ["Precio partida"]: number,
     Subastador: string
-
+}
+export interface NewAuctionJSON {
+    Titulo: string,
+    Descripcion: string,
+    ["Fecha limite"]: Date,
+    Foto: string,
+    ["Precio partida"]: number,
+    Subastador: string
 }
 
 export class Auction {
@@ -157,4 +164,3 @@ export async function GetAllAuctionsOfBuyer(userID: string) {
         return null;
     }
 }
-    
