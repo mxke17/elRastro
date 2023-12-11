@@ -78,7 +78,7 @@ export async function Profile(props: profileProps) {
                   </div>
                   <div className="px-3">
                     <div>
-                      <p className="mb-1 h5">{reviewsScore}</p>
+                      <p className="mb-1 h5">{reviewsScore.toFixed(2)}</p>
                       <p className="small text-muted mb-0"> Valoracion media
                         <a href={`/usuario/${user.ID.toHexString()}/valorar`}>
                           <button

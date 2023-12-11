@@ -1,71 +1,80 @@
 "use client";
-import {  AddressJSON } from "@/database/address";
-import {  UserJSON } from "@/database/users";
+import { AddressJSON } from "@/database/address";
+import { UserJSON } from "@/database/users";
 import { FormEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import {CreateNewAddress} from "@/database/address_ops";
+import { UpdateAddress } from "@/database/address_ops";
 
 //import { User } from "@/database/users";
 
 interface profileProps {
     user: UserJSON;
     address: AddressJSON;
-  
+
 }
-export  function EditUser(props: profileProps) {
+export function EditUser(props: profileProps) {
     //const user = User.FromJSON(props.user);
     //const address = Address.FromJSON(props.address);
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [address, setAddress] = useState("");
-    const [foto, setFoto] = useState("");
-    const [calle, setCalle] = useState("");
-    const [codigoPostal, setCodigoPostal] = useState("");
-    const [localidad, setLocalidad] = useState("");
-    const [provincia, setProvincia] = useState("");
-    const [numero, setNumero] = useState("");
-    const [pais, setPais] = useState("");
+    const [userName, setUserName] = useState(props.user["Nombre usuario"]);
+    const [email, setEmail] = useState(props.user.Email);
+    const [address, setAddress] = useState(props.user.Direccion);
+    const [foto, setFoto] = useState(props.user.Foto);
+    const [addressID, setAddressID] = useState(props.address.ID);
+    const [calle, setCalle] = useState(props.address.Calle);
+    const [codigoPostal, setCodigoPostal] = useState(props.address.CodigoPostal);
+    const [localidad, setLocalidad] = useState(props.address.Localidad);
+    const [provincia, setProvincia] = useState(props.address.Provincia);
+    const [numero, setNumero] = useState(props.address.Numero.toString());
+    const [pais, setPais] = useState(props.address.Pais);
+
 
 
     const handleUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
         const userName = event.target.value;
-        if(userName) {
+        if (userName) {
             setUserName(userName);
         }
     };
 
     const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         const email = event.target.value;
-        if(email) {
+        if (email) {
             setEmail(email);
+        }
+    };
+
+    const handleAddressID = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const addressID = event.target.value;
+        if (addressID) {
+            setAddressID(addressID);
         }
     };
 
     const handleAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
         const address = event.target.value;
-        if(address) {
+        if (address) {
             setAddress(address);
         }
     };
 
     const handleFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
         const foto = event.target.value;
-        if(foto) {
+        if (foto) {
             setFoto(foto);
         }
     };
 
     const handleCalle = (event: React.ChangeEvent<HTMLInputElement>) => {
         const calle = event.target.value;
-        if(calle) {
+        if (calle) {
             setCalle(calle);
         }
     };
 
     const handleCodigoPostal = (event: React.ChangeEvent<HTMLInputElement>) => {
         const codigoPostal = event.target.value;
-        if(codigoPostal) {
+        if (codigoPostal) {
             setCodigoPostal(codigoPostal);
         }
     };
@@ -73,51 +82,52 @@ export  function EditUser(props: profileProps) {
 
     const handleLocalidad = (event: React.ChangeEvent<HTMLInputElement>) => {
         const localidad = event.target.value;
-        if(localidad) {
+        if (localidad) {
             setLocalidad(localidad);
         }
     };
 
     const handleProvincia = (event: React.ChangeEvent<HTMLInputElement>) => {
         const provincia = event.target.value;
-        if(provincia) {
+        if (provincia) {
             setProvincia(provincia);
         }
     };
 
     const handleNumero = (event: React.ChangeEvent<HTMLInputElement>) => {
         const numero = event.target.value;
-        if(numero) {
+        if (numero) {
             setNumero(numero);
         }
     };
 
     const handlePais = (event: React.ChangeEvent<HTMLInputElement>) => {
         const pais = event.target.value;
-        if(pais) {
+        if (pais) {
             setPais(pais);
         }
     };
 
-    
+
 
     const handleSumbit = (event: FormEvent) => {
         event.preventDefault();
 
-        CreateNewAddress({
+        UpdateAddress({
+            ID: addressID,
             Calle: calle,
-            CodigoPostal: codigoPostal,
+            ["Codigo postal"]: codigoPostal,
             Localidad: localidad,
             Provincia: provincia,
             Numero: parseInt(numero),
             Pais: pais,
         });
-            
-        window.location.href = "/home";
+
+        //window.location.href = "/home";
     };
 
     return (<>
-         <Form onSubmit={handleSumbit}>
+        <Form onSubmit={handleSumbit}>
             <Form.Group controlId="formName">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control type="text" placeholder={props.user["Nombre usuario"]} onChange={handleUserName} />
@@ -138,12 +148,12 @@ export  function EditUser(props: profileProps) {
                 <Form.Control type="text" placeholder={props.user.Foto} onChange={handleFoto} />
             </Form.Group>
 
-            
-            
+
+
             <Form.Group as={Row}>
                 <Form.Label column sm="2">Calle</Form.Label>
                 <Col sm="4">
-                    <Form.Control type="text" placeholder ={props.address.Calle} onChange={handleCalle} />
+                    <Form.Control type="text" placeholder={props.address.Calle} onChange={handleCalle} />
                 </Col>
 
                 <Form.Label column sm="2">Código Postal</Form.Label>
@@ -157,7 +167,7 @@ export  function EditUser(props: profileProps) {
                 <Form.Control type="text" placeholder={props.address.Localidad} onChange={handleLocalidad} />
             </Form.Group>
 
-            
+
             <Form.Group controlId="formProvince">
                 <Form.Label>Provincia</Form.Label>
                 <Form.Control type="text" placeholder={props.address.Provincia} onChange={handleProvincia} />
@@ -168,13 +178,13 @@ export  function EditUser(props: profileProps) {
                 <Form.Control type="text" placeholder={props.address.Numero.toString()} onChange={handleNumero} />
             </Form.Group>
 
-            
+
             <Form.Group controlId="formCountry">
                 <Form.Label>Pais</Form.Label>
                 <Form.Control type="text" placeholder={props.address.Pais} onChange={handlePais} />
             </Form.Group>
 
-            
+
 
 
             <Button variant="primary" type="submit">

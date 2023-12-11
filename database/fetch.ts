@@ -24,3 +24,19 @@ export async function Post(path: string, data: any) {
         body: JSON.stringify(data)
     });
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function Put(path: string, data: any) {
+    return await fetch(backendUri + path, {
+        method: "PUT",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data)
+    });
+}

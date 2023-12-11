@@ -4,6 +4,7 @@ import { Get } from "./fetch";
 
 const PATH = "direcciones";
 export interface AddressJSON {
+    ID: any;
     _id: string,
     Calle: string;
     CodigoPostal: string;
@@ -14,8 +15,18 @@ export interface AddressJSON {
 }
 
 export interface NewAddressJSON {
+    ID: string,
     Calle: string;
     CodigoPostal: string;
+    Localidad: string;
+    Provincia: string;
+    Numero: number;
+    Pais: string;
+}
+export interface AddressJSONUpdate {
+    ID: string,
+    Calle: string;
+    ["Codigo postal"]: string;
     Localidad: string;
     Provincia: string;
     Numero: number;
