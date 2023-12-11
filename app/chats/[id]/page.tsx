@@ -13,7 +13,6 @@ interface RouteParams {
 export default async function chats(context: RouteContext<RouteParams>){
     const chatID = context.params.id;
     const messages = await GetAllMessagesFromChat(chatID);
-    console.log(messages);
     if(messages === null){
         return <>ERROR</>;
     }

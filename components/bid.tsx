@@ -42,7 +42,6 @@ export function BidMasAlta(props: bidProps) {
 
 export function NewBid(props: newBidProps) {
     const sub = props.subasta;
-    console.log(sub);
     const [price, setPrice] = useState(0);
 
     const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {

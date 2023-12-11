@@ -18,7 +18,6 @@ export async function NewAuctionFromForm(formData: FormData, user: string) {
     const picture = formData.get("picture") as File;
 
     if(!title || !description || !price || !date || !picture) {
-        console.log("Something null");
         return;
     }
 
@@ -27,9 +26,6 @@ export async function NewAuctionFromForm(formData: FormData, user: string) {
 
     const imageResponse = await PostFormData("imagenes", imageFormData);
     if(imageResponse.status !== 200) {
-        const json = await imageResponse.json();
-        console.log("Response " + imageResponse.status);
-        console.log(json);
         return;
     }
 

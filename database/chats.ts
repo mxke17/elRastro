@@ -64,7 +64,6 @@ export async function GetAllChatsOfUser(userID: string) {
 
     try {
         const json = (await response.json()) as any[];
-        console.log(json);
         return json.map((x: any) => Chat.FromJSON(x));
     } catch(_) {
         return null;

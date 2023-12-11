@@ -76,16 +76,10 @@ export async function GetHighestBidForAuction(auctionID: string) {
 
 export async function GetAllBidsOfUser(userID: string) {
     const response = await Get(`${PATH}/postor/${userID}`);
-    //console.log("pujas de usuario ");
-    //console.log(`${PATH}/postor/${userID}`);
     try {
         const json = (await response.json()) as any[];
-        //console.log("Pujas de usuario");
-        //console.log(json);
         return json.map((x: any) => Bid.FromJSON(x));
     } catch(_) {
-        console.log("error pujas de usuario");
-        console.log(_);
         return null;
     }
 }
