@@ -4,6 +4,8 @@ import { GetAuction } from "@/database/auctions";
 import { RouteContext } from "@/lib/route";
 import { NewBid } from "@/components/bid";
 
+export const dynamic = "force-dynamic";
+
 interface RouteParams {
     id: string
 }

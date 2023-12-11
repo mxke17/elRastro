@@ -1,4 +1,3 @@
-
 import { AuctionDetailed } from "@/components/auction";
 import { BidMasAlta } from "@/components/bid";
 import { FooterHome } from "@/components/footer";
@@ -9,6 +8,8 @@ import { GetUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 import { notFound } from "next/navigation";
 import { Button, Col, Container, Row } from "react-bootstrap";
+
+export const dynamic = "force-dynamic";
 
 interface RouteParams {
     id: string

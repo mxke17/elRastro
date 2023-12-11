@@ -13,6 +13,7 @@ import { GetAllBidsOfUser } from "@/database/bid";
 import { GetAllReviewsOfUser, GetAverageScoreOfUser } from "@/database/reviews";
 import { ProfilePujas } from "@/components/profilePujas";
 
+export const dynamic = "force-dynamic";
 
 interface RouteParams {
     id: string

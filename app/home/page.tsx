@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Filter } from "@/components/filter";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     params,

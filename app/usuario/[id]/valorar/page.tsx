@@ -4,6 +4,8 @@ import { Review } from "@/components/review";
 import { GetUser, GetBuyersOfUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 
+export const dynamic = "force-dynamic";
+
 interface RouteParams {
     id: string
 }

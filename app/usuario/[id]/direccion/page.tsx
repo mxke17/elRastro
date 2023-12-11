@@ -6,10 +6,12 @@ import { GetAddress } from "@/database/address";
 import { RouteContext } from "@/lib/route";
 import { notFound } from "next/navigation";
 import { GetMap } from "@/database/map";
+
+export const dynamic = "force-dynamic";
+
 interface RouteParams {
     id: string
 }
-
 
 export default async function home(context: RouteContext<RouteParams>) {
 	const userID = context.params.id;

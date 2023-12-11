@@ -2,6 +2,8 @@ import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 
+export const dynamic = "force-dynamic";
+
 export default function NotFound() {
     return <>
         <NavbarHome></NavbarHome>

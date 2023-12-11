@@ -3,6 +3,8 @@ import { FooterHome } from "@/components/footer";
 import { NavbarLite } from "@/components/navbarLite";
 import { Button, Card, Col, Container, Figure, Form, Row } from "react-bootstrap";
 
+export const dynamic = "force-dynamic";
+
 export default function Login() {
     return <>
         <NavbarLite></NavbarLite>

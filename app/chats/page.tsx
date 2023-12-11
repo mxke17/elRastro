@@ -2,6 +2,9 @@ import { ChatList } from "@/components/chatList";
 import { FooterHome } from "@/components/footer";
 import { NavbarHome } from "@/components/navbar";
 import { GetAllChatsOfUser } from "@/database/chats";
+
+export const dynamic = "force-dynamic";
+
 export default async function chats(){
     const userId = "653be37c5ee549bea86cd462";
     const allChats = await GetAllChatsOfUser(userId);
@@ -16,6 +19,7 @@ export default async function chats(){
         <FooterHome></FooterHome>
     </>;
 }
+
 export async function generateStaticParams() {
     const chats = (await GetAllChatsOfUser( "653be37c5ee549bea86cd462")) ?? [];
 

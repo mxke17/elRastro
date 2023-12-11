@@ -4,6 +4,8 @@ import { NavbarHome } from "@/components/navbar";
 import { GetAllMessagesFromChat } from "@/database/messages";
 import { RouteContext } from "@/lib/route";
 
+export const dynamic = "force-dynamic";
+
 interface RouteParams {
     id: string
 }

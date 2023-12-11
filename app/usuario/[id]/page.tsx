@@ -12,6 +12,8 @@ import { GetAllAuctionsOfBuyer, GetAllAuctionsOfUser } from "@/database/auctions
 import { GetAllBidsOfUser } from "@/database/bid";
 import { GetAllReviewsOfUser, GetAverageScoreOfUser } from "@/database/reviews";
 
+export const dynamic = "force-dynamic";
+
 interface RouteParams {
     id: string
 }

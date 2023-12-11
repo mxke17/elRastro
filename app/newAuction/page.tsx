@@ -5,6 +5,7 @@ import { NavbarHome } from "@/components/navbar";
 import { NewAuction } from "@/components/newAuction";
 import { Card, Col, Container, Figure, Row } from "react-bootstrap";
 
+export const dynamic = "force-dynamic";
 
 export default async function newAuction() {
 
