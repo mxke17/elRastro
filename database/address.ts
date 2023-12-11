@@ -13,6 +13,15 @@ export interface AddressJSON {
     Pais: string;
 }
 
+export interface NewAddressJSON {
+    Calle: string;
+    CodigoPostal: string;
+    Localidad: string;
+    Provincia: string;
+    Numero: number;
+    Pais: string;
+}
+
 export class Address {
     ID: ObjectId;
     Calle: string;
