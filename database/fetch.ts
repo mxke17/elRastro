@@ -24,3 +24,15 @@ export async function Post(path: string, data: any) {
         body: JSON.stringify(data)
     });
 }
+
+export async function PostFormData(path: string, data: FormData) {
+    return await fetch(backendUri + path, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: data
+    });
+}
