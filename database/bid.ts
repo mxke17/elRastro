@@ -12,6 +12,13 @@ export interface BidJSON {
     Subasta: string,
 }
 
+export interface NewBidJSON {
+    ["Fecha de puja"]: Date,
+    ["Cantidad"]: number,
+    Postor: string,
+    Subasta: string,
+}
+
 export class Bid {
     ID: ObjectId;
     Date: Date;
