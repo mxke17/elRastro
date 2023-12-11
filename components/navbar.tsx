@@ -21,6 +21,7 @@ export function NavbarHome() {
                         <Nav.Link href="/chats">Chats</Nav.Link>
                         <NavDropdown title="Perfil" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">Mi perfil</NavDropdown.Item>
+                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">Editar perfil</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/">
                                 Cerrar sesión
