@@ -24,7 +24,7 @@ export interface NewAddressJSON {
     Pais: string;
 }
 export interface AddressJSONUpdate {
-    ID: string,
+    //ID: string,
     Calle: string;
     ["Codigo postal"]: string;
     Localidad: string;
@@ -73,6 +73,7 @@ export class Address {
     }
     ToJSON(): AddressJSON {
         return {
+            ID: this.ID,
             _id: this.ID.toHexString(),
             Calle : this.Calle,
             CodigoPostal : this.CodigoPostal,
