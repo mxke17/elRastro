@@ -128,6 +128,11 @@ export function EditUser(props: profileProps) {
 
     return (<>
         <Form onSubmit={handleSumbit}>
+            <Form.Group controlId="formAddressID">
+                <Form.Label>ID</Form.Label>
+                <Form.Control type="text" placeholder={props.address.ID} onChange={handleAddressID} />
+            </Form.Group>
+
             <Form.Group controlId="formName">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control type="text" placeholder={props.user["Nombre usuario"]} onChange={handleUserName} />
