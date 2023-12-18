@@ -1,4 +1,6 @@
 "use client";
+
+import { signOut } from "next-auth/react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -23,8 +25,16 @@ export function NavbarHome() {
                             <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">Mi perfil</NavDropdown.Item>
                             <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">Editar perfil</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/">
-                                Cerrar sesión
+                            <NavDropdown.Item>
+                                <Button
+                                    onClick={async () => {
+                                        await signOut({
+                                            callbackUrl: "/",
+                                        });
+                                    }}
+                                >
+                                    Cerrar sesión
+                                </Button>
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
