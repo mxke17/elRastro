@@ -2,7 +2,7 @@
 import { AddressJSON } from "@/database/address";
 import { UserJSON } from "@/database/users";
 import { FormEvent, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { UpdateAddress } from "@/database/address_ops";
 
@@ -103,56 +103,64 @@ export function EditUser(props: profileProps) {
                 Pais: pais,
             });
 
-        window.location.href = "/usuario/" + props.user._id ;
+        window.location.href = "/usuario/" + props.user._id;
     };
 
     return (<>
-      <Form onSubmit={handleSumbit} className="m-3">
-    <h2 className="text-center mb-4">Actualizar Perfil</h2>
+        <Container fluid="md">
+            <Row>
+                <Col xs={1}></Col>
+                <Col>
+                    <Form onSubmit={handleSumbit} className="m-3">
+                        <h2 className="text-center mb-4">Actualizar Perfil</h2>
 
-    <Form.Group controlId="formAddressID">
-        <Form.Control hidden type="text" value={props.address._id} onChange={handleAddressID} />
-    </Form.Group>
+                        <Form.Group controlId="formAddressID">
+                            <Form.Control hidden type="text" value={props.address._id} onChange={handleAddressID} />
+                        </Form.Group>
 
-    <Form.Group controlId="formAddress">
-        <Form.Control hidden type="text" placeholder={props.user.Direccion} onChange={handleAddress} />
-    </Form.Group>
+                        <Form.Group controlId="formAddress">
+                            <Form.Control hidden type="text" placeholder={props.user.Direccion} onChange={handleAddress} />
+                        </Form.Group>
 
-    <Form.Group as={Row} className="mb-3">
-        <Form.Label column sm="2">Calle</Form.Label>
-        <Col sm="4">
-            <Form.Control type="text" value={calle} onChange={handleCalle} />
-        </Col>
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column sm="2">Calle</Form.Label>
+                            <Col sm="4">
+                                <Form.Control type="text" value={calle} onChange={handleCalle} />
+                            </Col>
 
-        <Form.Label column sm="2">Código Postal</Form.Label>
-        <Col sm="4">
-            <Form.Control type="text" value={codigoPostal} onChange={handleCodigoPostal} />
-        </Col>
-    </Form.Group>
+                            <Form.Label column sm="2">Código Postal</Form.Label>
+                            <Col sm="4">
+                                <Form.Control type="text" value={codigoPostal} onChange={handleCodigoPostal} />
+                            </Col>
+                        </Form.Group>
 
-    <Form.Group controlId="formCity" className="mb-3">
-        <Form.Label>Ciudad</Form.Label>
-        <Form.Control type="text" value={localidad} onChange={handleLocalidad} />
-    </Form.Group>
+                        <Form.Group controlId="formCity" className="mb-3">
+                            <Form.Label>Ciudad</Form.Label>
+                            <Form.Control type="text" value={localidad} onChange={handleLocalidad} />
+                        </Form.Group>
 
-    <Form.Group controlId="formProvince" className="mb-3">
-        <Form.Label>Provincia</Form.Label>
-        <Form.Control type="text" value={provincia} onChange={handleProvincia} />
-    </Form.Group>
+                        <Form.Group controlId="formProvince" className="mb-3">
+                            <Form.Label>Provincia</Form.Label>
+                            <Form.Control type="text" value={provincia} onChange={handleProvincia} />
+                        </Form.Group>
 
-    <Form.Group controlId="formNumber" className="mb-3">
-        <Form.Label>Numero</Form.Label>
-        <Form.Control type="text" value={numero} onChange={handleNumero} />
-    </Form.Group>
+                        <Form.Group controlId="formNumber" className="mb-3">
+                            <Form.Label>Numero</Form.Label>
+                            <Form.Control type="text" value={numero} onChange={handleNumero} />
+                        </Form.Group>
 
-    <Form.Group controlId="formCountry" className="mb-3">
-        <Form.Label>Pais</Form.Label>
-        <Form.Control type="text" value={pais} onChange={handlePais} />
-    </Form.Group>
+                        <Form.Group controlId="formCountry" className="mb-3">
+                            <Form.Label>Pais</Form.Label>
+                            <Form.Control type="text" value={pais} onChange={handlePais} />
+                        </Form.Group>
 
-    <Button variant="success" type="submit">
-        Actualizar perfil
-    </Button>
-</Form>
+                        <Button variant="success" type="submit">
+                            Actualizar perfil
+                        </Button>
+                    </Form>
+                </Col>
+                <Col xs={1}></Col>
+            </Row>
+        </Container>
     </>);
 }
