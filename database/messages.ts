@@ -96,7 +96,6 @@ export async function GetAllMessagesFromChat(id: string){
 
     try{
         const json = (await response.json()) as any[];
-        console.log(json);
         return json.map((x: any) => Message.FromJSON(x));
     }catch(_) {
         return null;

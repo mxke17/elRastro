@@ -165,7 +165,6 @@ export async function GetAllAuctionsWithSpecificState(state: string, params?: Au
         const json = (await response.json()) as any[];
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
-        console.log(_);
         return null;
     }
 }
@@ -173,15 +172,10 @@ export async function GetAllAuctionsWithSpecificState(state: string, params?: Au
 
 export async function GetAllAuctionsOfUser(userID: string) {
     const response = await Get(`${PATH}/usuario/${userID}`);
-//    console.log(`${PATH}/subastas/usuario/${userID}`);
     try {
         const json = (await response.json()) as any[];
-        console.log("Subastas de usuario");
-        console.log(json);
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
-        console.log("error subastas de usuario");
-        console.log(_);
         return null;
     }
 }
@@ -189,15 +183,10 @@ export async function GetAllAuctionsOfUser(userID: string) {
 
 export async function GetAllAuctionsOfBuyer(userID: string) {
     const response = await Get(`${PATH}/comprador/${userID}`);
-//    console.log(`${PATH}/subastas/usuario/${userID}`);
     try {
         const json = (await response.json()) as any[];
-        console.log("Subastas de usuario");
-        console.log(json);
         return json.map((x: any) => Auction.FromJSON(x));
     } catch(_) {
-        console.log("error subastas de usuario");
-        console.log(_);
         return null;
     }
 }

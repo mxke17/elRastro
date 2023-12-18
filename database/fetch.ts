@@ -25,6 +25,7 @@ export async function Post(path: string, data: any) {
     });
 }
 
+<<<<<<< HEAD
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function Put(path: string, data: any) {
     return await fetch(backendUri + path, {
@@ -38,5 +39,16 @@ export async function Put(path: string, data: any) {
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify(data)
+=======
+export async function PostFormData(path: string, data: FormData) {
+    return await fetch(backendUri + path, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: data
+>>>>>>> 6404812a8a6b1595fbc73a4b279b274de532c546
     });
 }

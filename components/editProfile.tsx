@@ -191,6 +191,5 @@ export function EditUser(props: profileProps) {
                 Actualizar perfil
             </Button>
         </Form>
-        {console.log(handleSumbit.toString())}
     </>);
 }

@@ -17,9 +17,6 @@ interface bidProps{
 export function BidMini(props: bidProps) {
     const bid = props.bidJSON;
     const auction = props.auctionJSON;
-    console.log("subastosa");
-    console.log(auction);
-
 
     //const user =  GetUser(bid.Postor);
 

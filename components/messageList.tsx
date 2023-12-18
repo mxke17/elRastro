@@ -17,7 +17,6 @@ export function MessageList(props: MessageListProp) {
         event.preventDefault();
         const text = event.target.value;
         if (text) {
-            console.log(text);
             setMessage(text);
         }
     };
