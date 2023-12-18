@@ -1,6 +1,4 @@
-import { FooterHome } from "@/components/footer";
 import { Map } from "@/components/map";
-import { NavbarHome } from "@/components/navbar";
 import { GetUser } from "@/database/users";
 import { GetAddress } from "@/database/address";
 import { RouteContext } from "@/lib/route";
@@ -36,15 +34,11 @@ export default async function home(context: RouteContext<RouteParams>) {
 	const latitud = Number(mapa.lat);
 	
 	return <>
-		<NavbarHome></NavbarHome>
 		<p>Aqui tienes la dirección:</p>
 
 		<div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
 			<Map longitud={longitud} latitud={latitud}></Map>
 		</div>
-		
-
-		<FooterHome></FooterHome>
 	</>;
 }
 

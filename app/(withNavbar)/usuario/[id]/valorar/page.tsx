@@ -1,5 +1,3 @@
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { Review } from "@/components/review";
 import { GetUser, GetBuyersOfUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
@@ -44,12 +42,10 @@ export default async function auction(context: RouteContext<RouteParams>) {
     });
 
     return <>
-        <NavbarHome></NavbarHome>
         <div style={{ border: "1px solid #ddd", borderRadius: "8px", margin: "16px", padding: "16px", backgroundColor: "#fff", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
             <div style={{ marginBottom: "16px" }}>
                 <Review BuyerID={buyerID} SellerID={sellerID} ></Review>
             </div>
         </div>
-        <FooterHome></FooterHome>
     </>;
 }

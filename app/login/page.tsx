@@ -1,5 +1,4 @@
 "use client";
-import { FooterHome } from "@/components/footer";
 import { NavbarLite } from "@/components/navbarLite";
 import { Button, Card, Col, Container, Figure, Form, Row } from "react-bootstrap";
 
@@ -41,6 +40,5 @@ export default function Login() {
                 <Col xs={1}></Col>
             </Row>
         </Container>
-        <FooterHome></FooterHome>
     </>;
 }

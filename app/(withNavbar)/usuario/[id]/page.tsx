@@ -1,6 +1,4 @@
-
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
+import { Profile } from "@/components/profile";
 import { GetAllUsers, GetUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 //import { AuctionList } from "@/components/auctionList";
@@ -11,7 +9,6 @@ import { notFound } from "next/navigation";
 import { GetAllAuctionsOfBuyer, GetAllAuctionsOfUser } from "@/database/auctions";
 import { GetAllBidsOfUser } from "@/database/bid";
 import { GetAllReviewsOfUser, GetAverageScoreOfUser } from "@/database/reviews";
-import { ProfilePujas } from "@/components/profilePujas";
 
 export const dynamic = "force-dynamic";
 
@@ -55,9 +52,7 @@ export default async function home(context: RouteContext<RouteParams>) {
     const mappedReviews = reviews.map(review => review.ToJSON());
 
     return <>
-        <NavbarHome></NavbarHome>
-
-        <ProfilePujas
+        <Profile
             user={user.ToJSON()}
             address={address.ToJSON()}
             auctions={mappedAuctions}
@@ -65,10 +60,7 @@ export default async function home(context: RouteContext<RouteParams>) {
             auctionsAchieved={mappedAuctionsAchieved}
             reviews={mappedReviews}
             reviewsScore={reviewsScore}
-        ></ProfilePujas>
-        
-
-        <FooterHome></FooterHome>
+        ></Profile>
     </>;
 }
 

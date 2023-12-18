@@ -1,6 +1,4 @@
 import { ChatList } from "@/components/chatList";
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { GetAllChatsOfUser } from "@/database/chats";
 
 export const dynamic = "force-dynamic";
@@ -11,12 +9,10 @@ export default async function chats(){
 
     if(allChats===null){
         
-        return<><NavbarHome></NavbarHome><FooterHome></FooterHome> <h1>There are no Chats available</h1></>;
+        return<><h1>There are no Chats available</h1></>;
    }
     return <>
-        <NavbarHome></NavbarHome>
         <ChatList chatList={allChats}></ChatList>
-        <FooterHome></FooterHome>
     </>;
 }
 

@@ -1,7 +1,5 @@
 "use client";
 
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { NewAuction } from "@/components/newAuction";
 import { Card, Col, Container, Figure, Row } from "react-bootstrap";
 
@@ -10,7 +8,6 @@ export const dynamic = "force-dynamic";
 export default async function newAuction() {
 
     return <>
-        <NavbarHome></NavbarHome>
         <Container fluid="md">
             <Row>
                 <Col xs={1}></Col>
@@ -27,6 +24,5 @@ export default async function newAuction() {
                 <Col xs={1}></Col>
             </Row>
         </Container>
-        <FooterHome></FooterHome>
     </>;
 }

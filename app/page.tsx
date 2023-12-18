@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client";
-import { FooterHome } from "@/components/footer";
 import { NavbarLite } from "@/components/navbarLite";
 import Carousel from "react-bootstrap/Carousel";
 import Figure from "react-bootstrap/Figure";
@@ -33,6 +32,6 @@ export default async function Home() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <FooterHome></FooterHome></>
+    </>
   );
 }

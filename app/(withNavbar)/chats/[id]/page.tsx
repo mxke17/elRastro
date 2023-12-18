@@ -1,6 +1,4 @@
-import { FooterHome } from "@/components/footer";
 import { MessageList } from "@/components/messageList";
-import { NavbarHome } from "@/components/navbar";
 import { GetAllMessagesFromChat } from "@/database/messages";
 import { RouteContext } from "@/lib/route";
 
@@ -18,9 +16,7 @@ export default async function chats(context: RouteContext<RouteParams>){
     }
         
     return <>
-        <NavbarHome></NavbarHome>
         <MessageList messageList={messages} chatId={chatID}></MessageList>
-        <FooterHome></FooterHome>
     </>;
 }
 

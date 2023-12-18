@@ -1,6 +1,4 @@
 import { AuctionList } from "@/components/auctionList";
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { AuctionFilter, GetAllAuctionsWithSpecificState } from "@/database/auctions";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -50,7 +48,6 @@ export default async function Home({
 
     if (auctions === null || auctions.length === 0) {
         return <>
-            <NavbarHome></NavbarHome>
             <Container fluid="md">
                 <Row>
                     <Col xs={1}></Col>
@@ -61,14 +58,12 @@ export default async function Home({
                     <Col xs={1}></Col>
                 </Row>
             </Container>
-            <FooterHome></FooterHome>
         </>;
     }
 
     const parsedAuctions = auctions.map(auction => auction.ToJSON());
 
     return <>
-        <NavbarHome></NavbarHome>
         <Container fluid="md">
             <Row>
                 <Col xs={1}></Col>
@@ -79,6 +74,5 @@ export default async function Home({
                 <Col xs={1}></Col>
             </Row>
         </Container>
-        <FooterHome></FooterHome>
     </>;
 }

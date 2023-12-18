@@ -1,5 +1,3 @@
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { GetAllUsers, GetUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 //import { AuctionList } from "@/components/auctionList";
@@ -31,14 +29,10 @@ export default async function home(context: RouteContext<RouteParams>) {
 
 
     return <>
-        <NavbarHome></NavbarHome>
-
         <EditUser
             user={user.ToJSON()}
             address={address.ToJSON()}
         ></EditUser>
-
-        <FooterHome></FooterHome>
     </>;
 }
 

@@ -1,7 +1,5 @@
 import { AuctionDetailed } from "@/components/auction";
 import { BidMasAlta } from "@/components/bid";
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
 import { GetAuction } from "@/database/auctions";
 import { GetHighestBidForAuction } from "@/database/bid";
 import { GetUser } from "@/database/users";
@@ -33,8 +31,6 @@ export default async function auction(context: RouteContext<RouteParams>){
 
     if (auctionDetallada.Deadline.getTime() < Date.now() && bidMasAlta?.Bidder.toHexString() === usuario.ID.toHexString()) {
         return <div>
-            <NavbarHome></NavbarHome>
-
             <Container fluid="md">
                 <Row>
                     <Col xs={1}></Col>
@@ -47,16 +43,12 @@ export default async function auction(context: RouteContext<RouteParams>){
                     <Col xs={1}></Col>
                 </Row>
             </Container>
-
-            <FooterHome></FooterHome>
         </div>;
 
     }
 
     if (auctionDetallada.Deadline.getTime() < Date.now()) {
         return <div>
-            <NavbarHome></NavbarHome>
-
             <Container fluid="md">
                 <Row>
                     <Col xs={1}></Col>
@@ -67,8 +59,6 @@ export default async function auction(context: RouteContext<RouteParams>){
                     <Col xs={1}></Col>
                 </Row>
             </Container>
-
-            <FooterHome></FooterHome>
         </div>;
 
     }
@@ -76,8 +66,6 @@ export default async function auction(context: RouteContext<RouteParams>){
 
     if(!bidMasAlta){
         return <>
-        <NavbarHome></NavbarHome>
-
         <Container fluid="md">
             <Row>
                 <Col xs={1}></Col>
@@ -89,14 +77,10 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Col xs={1}></Col>
             </Row>
         </Container>
-
-        <FooterHome></FooterHome>
     </>;
     }
 
     return <>
-        <NavbarHome></NavbarHome>
-
         <Container fluid="md">
             <Row>
                 <Col xs={1}></Col>
@@ -108,7 +92,5 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Col xs={1}></Col>
             </Row>
         </Container>
-
-        <FooterHome></FooterHome>
     </>;
 }

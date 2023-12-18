@@ -1,5 +1,4 @@
-import { FooterHome } from "@/components/footer";
-import { NavbarHome } from "@/components/navbar";
+
 import { GetAuction } from "@/database/auctions";
 import { RouteContext } from "@/lib/route";
 import { NewBid } from "@/components/bid";
@@ -18,10 +17,8 @@ export default async function auction(context: RouteContext<RouteParams>){
     }
 
     return <>
-        <NavbarHome></NavbarHome>
         <div style={{ border: "1px solid #ddd", borderRadius: "8px", margin: "16px", padding: "16px", backgroundColor: "#fff", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
         <NewBid subasta={auctionDetallada.ID.toHexString()}></NewBid>
     </div>
-        <FooterHome></FooterHome>
     </>;
 }

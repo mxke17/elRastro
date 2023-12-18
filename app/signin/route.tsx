@@ -1,13 +1,11 @@
 "use client";
-import { FooterHome } from "@/components/footer";
-import { NavbarLite } from "@/components/navbarLite";
+
 import { Button, Card, Col, Container, Figure, Form, Row } from "react-bootstrap";
 
 export const dynamic = "force-dynamic";
 
 export default function SignIn() {
     return <>
-        <NavbarLite></NavbarLite>
         <Container fluid="md">
             <Row>
                 <Col xs={1}></Col>
@@ -41,6 +39,5 @@ export default function SignIn() {
                 <Col xs={1}></Col>
             </Row>
         </Container>
-        <FooterHome></FooterHome>
     </>;
 }
