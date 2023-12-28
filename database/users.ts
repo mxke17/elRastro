@@ -17,36 +17,13 @@ export interface UserJSON {
     Email: string,
     Foto: string,
     ["Nombre usuario"]: string,
-    Direccion: string
+    Direccion: string | undefined
 }
 
-export class NewUser {
-    Email: string;
-    Picture: string;
-    UserName: string;
-    
-
-    constructor(
-        email: string,
-        picture: string,
-        userName: string,
-        
-    ) {
-        this.Email = email;
-        this.Picture = picture;
-        this.UserName = userName;
-        
-    }
-
-    ToJSON(): NewUserJSON {
-        return {
-            _id: "",
-            Email: this.Email,
-            Foto: this.Picture,
-            ["Nombre usuario"]: this.UserName,
-            
-        };
-    }
+export interface NewUser {
+    Email: string,
+    Foto: string,
+    ["Nombre usuario"]: string
 }
 
 export class User {
@@ -54,20 +31,22 @@ export class User {
     Email: string;
     Picture: string;
     UserName: string;
-    Address: ObjectId;
+    Address: ObjectId | undefined;
 
     constructor(
         id: string,
         email: string,
         picture: string,
         userName: string,
-        address: string
+        address: string | undefined
     ) {
         this.ID = ObjectId.createFromHexString(id);
         this.Email = email;
         this.Picture = picture;
         this.UserName = userName;
-        this.Address = ObjectId.createFromHexString(address);
+        if(address) {
+            this.Address = ObjectId.createFromHexString(address);
+        }
     }
 
     static FromJSON(json: UserJSON) {
@@ -87,14 +66,14 @@ export class User {
             Email: this.Email,
             Foto: this.Picture,
             ["Nombre usuario"]: this.UserName,
-            Direccion: this.Address.toHexString()
+            Direccion: this.Address?.toHexString()
         };
     }
 }
 
 //No se si funciona correctamente
 export async function CreateUser(user: NewUser) {
-    const response = await Post(PATH, user.ToJSON());
+    const response = await Post(PATH, user);
 
     if(response.status === 400) {
         return null;
@@ -117,7 +96,7 @@ export async function GetUserByEmail(email: string) {
 
     try {
         const json = await response.json();
-        return User.FromJSON(json);
+        return User.FromJSON(json[0]);
     } catch(_) {
         return null;
     }
