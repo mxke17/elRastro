@@ -46,7 +46,7 @@ export function NavbarHome( props: NavbarHomeProps ) {
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <div className="d-flex"><Button href="/newAuction" variant="success">Nueva subasta</Button></div>
+                    <div className="d-flex"><Button href="/newAuction"  variant="success">Nueva subasta</Button></div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

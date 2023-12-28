@@ -6,10 +6,13 @@ import { Button, Card, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+interface NewAuctionProps {
+    userID: string;
+}
 
-export function NewAuction() {
+export function NewAuction(props : NewAuctionProps) {
     const [endDate, setEndDate] = useState(new Date());
-
+    const userID = props.userID;
     const handleEndDateChange = (date: Date | null) => {
         if(date) {
             setEndDate(date);
@@ -17,7 +20,7 @@ export function NewAuction() {
     };
 
     const handleSumbit = async (data: FormData) => {
-        const auctionCreated = await NewAuctionFromForm(data, "653be37c5ee549bea86cd466");
+        const auctionCreated = await NewAuctionFromForm(data, userID);
 
         window.location.href = `/auction/${auctionCreated.id}`;
     };
