@@ -52,6 +52,7 @@ export function NewBid(props: newBidProps) {
             if(!isNaN(parsedPrice)) {
                 setPrice(parsedPrice);
             }
+            console.log(price);
         }
     };
 
@@ -65,7 +66,7 @@ export function NewBid(props: newBidProps) {
             Subasta: sub
         });
 
-        window.location.href = "/auction/"+sub;
+        window.location.href = "/auction/"+sub+"/pujar/pago";
     };
 
     return (
@@ -80,6 +81,7 @@ export function NewBid(props: newBidProps) {
                         <Form.Label>Cantidad:</Form.Label>
                         <Form.Control onChange={handlePriceChange} type="number" placeholder="Introduce la cantidad de dinero que desees pujar" min="1" required/>
                     </Form.Group>
+
                     <Button variant="primary" type="submit">
                         Pujar
                     </Button>
