@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ObjectId } from "mongodb";
-import { Get } from "./fetch";
+import { Get, Post } from "./fetch";
 
 const PATH = "direcciones";
 export interface AddressJSON {
@@ -85,6 +85,21 @@ export class Address {
     }
 }
 
+export async function CreateAddress(address: AddressJSONUpdate) {
+    const response = await Post(PATH, address);
+
+    if(response.status === 400) {
+        return null;
+    }
+
+    try {
+        const json = await response.json();
+        return Address.FromJSON(json);
+    } catch(_) {
+        return null;
+    }
+}
+
 
 export async function GetAddress(id: string) {
     const response = await Get(`${PATH}/${id}`);
@@ -101,6 +116,34 @@ export async function GetAddress(id: string) {
     }
 }
 
+export async function GetAddressByUserID(id: string) {
+    const response = await Get(`${PATH}/usuario/${id}`);
+
+    if(response.status === 404) {
+        return null;
+    }
+
+    try {
+        const json = await response.json();
+        return Address.FromJSON(json);
+    } catch(_) {
+        return null;
+    }
+}
+export async function GetAddressByProvincia(name: string) {
+    const response = await Get(`${PATH}?Provincia=${name}`);
+
+    if(response.status === 404) {
+        return null;
+    }
+
+    try {
+        const json = await response.json();
+        return Address.FromJSON(json[0]);
+    } catch(_) {
+        return null;
+    }
+}
 
 export async function GetAllAddress() {
     const response = await Get(PATH);

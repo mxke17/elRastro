@@ -4,7 +4,7 @@
 import { Address, AddressJSON } from "@/database/address";
 import { Auction, AuctionJSON } from "@/database/auctions";
 import { Bid, BidJSON } from "@/database/bid";
-import { User, UserJSON } from "@/database/users";
+import { GetUserByEmail, User, UserJSON } from "@/database/users";
 import { ReviewJSON, Review } from "@/database/reviews";
 import React from "react";
 import { AuctionList } from "./auctionList";
