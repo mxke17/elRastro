@@ -1,6 +1,8 @@
 "use client";
 
-import { GetUserByEmail } from "@/database/users";
+import { CreateUser, GetUserByEmail } from "@/database/users";
+import { ServerSession } from "mongodb";
+import { getServerSession } from "next-auth/next";
 import { signOut, useSession } from "next-auth/react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -8,16 +10,25 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-export function NavbarHome() {
+export   function NavbarHome() {
 
-    const session = useSession();
+    const { data: session } = useSession();
+   // const session  = await  getServerSession();
+    const userEmail = session?.user?.email || ""; // Set a default value of an empty string if session?.user?.email is undefined
+    //const user = await GetUserByEmail(userEmail);
+    const usuario = {
+        email: session?.user?.email,
+        name: session?.user?.name,
+        image: session?.user?.image,
+        address: null
+    };
+    console.log(usuario);
 
-    const emailConseguido = GetUserByEmail(session.data?.user?.email ?? "");
 
-    console.log("NavbarHome");
-    console.log(session.data?.user?.email);
-    console.log(session.data?.user?.name);
-    console.log(session.data?.user?.image);
+    if( userEmail!= ""){
+        console.log("No existe el usuario");
+        //CreateUser(usuario);
+    }
 
 
     return (
@@ -34,8 +45,8 @@ export function NavbarHome() {
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/chats">Chats</Nav.Link>
                         <NavDropdown title="Perfil" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">{session.data?.user?.name}</NavDropdown.Item>
-                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466/editar">Editar perfil{emailConseguido}</NavDropdown.Item>
+                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">{session.user?.name}</NavDropdown.Item>
+                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466/editar">Editar perfil{}</NavDropdown.Item>
 
                             <NavDropdown.Divider />
                             <NavDropdown.Item>

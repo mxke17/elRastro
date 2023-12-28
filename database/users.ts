@@ -4,13 +4,49 @@ import { Get, Post } from "./fetch";
 
 const PATH = "usuario";
 
+export interface NewUserJSON {
+    _id: string,
+    Email: string,
+    Foto: string,
+    ["Nombre usuario"]: string,
+    
+}
+
 export interface UserJSON {
     _id: string,
     Email: string,
     Foto: string,
     ["Nombre usuario"]: string,
     Direccion: string
+}
 
+export class NewUser {
+    Email: string;
+    Picture: string;
+    UserName: string;
+    
+
+    constructor(
+        email: string,
+        picture: string,
+        userName: string,
+        
+    ) {
+        this.Email = email;
+        this.Picture = picture;
+        this.UserName = userName;
+        
+    }
+
+    ToJSON(): NewUserJSON {
+        return {
+            _id: "",
+            Email: this.Email,
+            Foto: this.Picture,
+            ["Nombre usuario"]: this.UserName,
+            
+        };
+    }
 }
 
 export class User {
@@ -57,8 +93,7 @@ export class User {
 }
 
 //No se si funciona correctamente
-
-export async function CreateUser(user: User) {
+export async function CreateUser(user: NewUser) {
     const response = await Post(PATH, user.ToJSON());
 
     if(response.status === 400) {
