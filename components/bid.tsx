@@ -11,6 +11,7 @@ interface bidProps {
 
 interface newBidProps {
     subasta: string;
+    user: string;
 }
 
 export function BidMasAlta(props: bidProps) {
@@ -54,13 +55,13 @@ export function NewBid(props: newBidProps) {
         }
     };
 
-    const handleSumbit = (event: FormEvent) => {
+    const handleSumbit = async (event: FormEvent) => {
         event.preventDefault();
 
-        CreateNewBid({
+        await CreateNewBid({
             "Fecha de puja": new Date(),
             "Cantidad": price,
-            Postor: "653be37c5ee549bea86cd465",
+            Postor: props.user,
             Subasta: sub
         });
 
