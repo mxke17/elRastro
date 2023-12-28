@@ -2,7 +2,7 @@ import { GetUserByEmail, CreateUser } from "@/database/users";
 import { NavbarHome } from "./navbar";
 import { NavbarLite } from "./navbarLite";
 import { getServerSession } from "next-auth";
-import { CreateAddress, GetAddressByProvincia } from "@/database/address";
+import { CreateAddress } from "@/database/address";
 
 export async function SelectNavbar(){
     const session = await getServerSession();
@@ -15,29 +15,29 @@ export async function SelectNavbar(){
     
         const user = await GetUserByEmail(sessionUser.email);
     
+        let userID;
+
         if(!user){
-            await CreateAddress({
+            const newAddressInfo = await CreateAddress({
                 Localidad: "",
-                Provincia: sessionUser.name,
-                Calle: " ",
+                Provincia: "",
+                Calle: "",
                 Numero: 0,
-                ["Codigo postal"]: " ",
+                ["Codigo postal"]: "",
                 Pais: ""
             });
-            const newAddress = await GetAddressByProvincia(sessionUser.name);
-            const newAddresID = newAddress?.ID.toHexString();
-            await CreateUser({
+            const addressID = newAddressInfo.id;
+            const newUserInfo = await CreateUser({
                 ["Nombre usuario"]: sessionUser.name,
                 Email: sessionUser.email,
                 Foto: sessionUser.image,
-                Direccion: newAddresID
+                Direccion: addressID
             });
+
+            userID = newUserInfo.id;
+        } else {
+            userID = user.ID.toHexString();
         }
-
-
-        const newUser = await GetUserByEmail(sessionUser.email);
-        console.log(newUser);
-        const userID = newUser?.ID.toHexString();
        
         return <NavbarHome userID={userID}></NavbarHome>;
     } else {

@@ -94,7 +94,7 @@ export async function CreateAddress(address: AddressJSONUpdate) {
 
     try {
         const json = await response.json();
-        return Address.FromJSON(json);
+        return json;
     } catch(_) {
         return null;
     }

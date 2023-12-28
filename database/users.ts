@@ -84,7 +84,7 @@ export async function CreateUser(user: NewUser) {
 
     try {
         const json = await response.json();
-        return User.FromJSON(json);
+        return json;
     } catch(_) {
         return null;
     }
