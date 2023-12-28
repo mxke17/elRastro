@@ -24,42 +24,44 @@ export default async function home(context: RouteContext<RouteParams>) {
         notFound();
     }
     const auctions = await GetAllAuctionsOfUser(userID);
-    const address = await GetAddress(user.Address.toHexString());
+    let address = null;
+    if (user.Address != null) {
+        address = await GetAddress(user.Address.toHexString());
+        if (address === null) {
+            return <h1>ERROR ADDRESS NULL</h1>;
+        }
+    }
     const bids = await GetAllBidsOfUser(userID);
     const auctionsAchieved = await GetAllAuctionsOfBuyer(userID);
     const reviews = await GetAllReviewsOfUser(userID);
     const reviewsScore = await GetAverageScoreOfUser(userID);
 
-    if (address === null) {
-        return <h1>ERROR ADDRESS NULL</h1>;
-    }
-    if (auctions === null) {
-        return <h1>ERROR AUCTION NULL</h1>;
-    }
-    if (bids === null) {
-        return <h1>ERROR BIDS NULL</h1>;
-    }
-    if (auctionsAchieved === null) {
-        return <h1>ERROR AUCTIONS ACHIEVED NULL</h1>;
-    }
-    if (reviews === null) {
-        return <h1>ERROR REVIEWS NULL</h1>;
+    let mappedAuctions = null;
+    if (auctions != null) {
+        mappedAuctions = auctions.map(auction => auction.ToJSON());
+
+    } let mappedBids = null;
+    if (bids != null) {
+        mappedBids = bids.map(bid => bid.ToJSON());
+    } let mappedAuctionsAchieved = null;
+    if (auctionsAchieved != null) {
+        mappedAuctionsAchieved = auctionsAchieved.map(auction => auction.ToJSON());
+    } let mappedReviews = null;
+    if (reviews != null) {
+        mappedReviews = reviews.map(review => review.ToJSON());
     }
 
-    const mappedAuctions = auctions.map(auction => auction.ToJSON());
-    const mappedBids = bids.map(bid => bid.ToJSON());
-    const mappedAuctionsAchieved = auctionsAchieved.map(auction => auction.ToJSON());
-    const mappedReviews = reviews.map(review => review.ToJSON());
+
 
     return <>
         <Profile
             user={user.ToJSON()}
-            address={address.ToJSON()}
-            auctions={mappedAuctions}
-            bids={mappedBids}
-            auctionsAchieved={mappedAuctionsAchieved}
-            reviews={mappedReviews}
-            reviewsScore={reviewsScore}
+            address={address.ToJSON() ?? null}
+            auctions={mappedAuctions ?? []}
+            bids={mappedBids ?? []}
+            auctionsAchieved={mappedAuctionsAchieved ?? []}
+            reviews={mappedReviews ?? []}
+            reviewsScore={reviewsScore ?? 0}
         ></Profile>
     </>;
 }

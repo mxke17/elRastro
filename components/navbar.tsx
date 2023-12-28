@@ -7,9 +7,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-export function NavbarHome() {
-    const { data: session } = useSession();
+interface NavbarHomeProps {
+    userID: string;
+}
 
+
+export function NavbarHome( props: NavbarHomeProps ) {
+    const { data: session } = useSession();
+    const usuarioID = props.userID;
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
@@ -24,8 +29,8 @@ export function NavbarHome() {
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/chats">Chats</Nav.Link>
                         <NavDropdown title="Perfil" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466">{session?.user?.name}</NavDropdown.Item>
-                            <NavDropdown.Item href="/usuario/653be37c5ee549bea86cd466/editar">Editar perfil{}</NavDropdown.Item>
+                            <NavDropdown.Item href={`/usuario/${usuarioID}`}>{session?.user?.name}</NavDropdown.Item>
+                            <NavDropdown.Item href={`/usuario/${usuarioID}/editar`}>Editar perfil</NavDropdown.Item>
 
                             <NavDropdown.Divider />
                             <NavDropdown.Item>

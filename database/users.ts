@@ -24,6 +24,9 @@ export interface NewUser {
     Email: string,
     Foto: string,
     ["Nombre usuario"]: string
+    Direccion: string | undefined
+
+
 }
 
 export class User {
