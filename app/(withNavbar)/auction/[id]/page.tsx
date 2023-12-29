@@ -1,5 +1,6 @@
 import { AuctionDetailed } from "@/components/auction";
 import { BidMasAlta } from "@/components/bid";
+import { HuellaCarbono } from "@/components/huellaCarbono";
 import { GetAuction } from "@/database/auctions";
 import { GetHighestBidForAuction } from "@/database/bid";
 import { GetUser } from "@/database/users";
@@ -80,6 +81,7 @@ export default async function auction(context: RouteContext<RouteParams>){
     </>;
     }
 
+ // No se como hacer que pille las variables que les pase
     return <>
         <Container fluid="md">
             <Row>
@@ -87,6 +89,7 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Col>
                 <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
                 <BidMasAlta bid={bidMasAlta}></BidMasAlta>
+                <HuellaCarbono origen = {"654b506202b50741b0ddf8a0"} destino = "654b51b602b50741b0ddf8a3"></HuellaCarbono>
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
                 <Col xs={1}></Col>
