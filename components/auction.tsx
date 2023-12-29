@@ -67,6 +67,7 @@ export function AuctionDetailed(props: auctionDetailedProps) {
                 <p>Vendedor: <a href={`/usuario/${usuario._id}`}>{usuario["Nombre usuario"]}</a></p>
                 <p>Precio inicial: {auction["Precio partida"]}</p>
                 <p>Fecha de cierre: {auction["Fecha limite"].toString()}</p>
+              
             </div>
             <Form onSubmit={handleChatSubmit}>
                 <Button type="submit">Chat</Button>
