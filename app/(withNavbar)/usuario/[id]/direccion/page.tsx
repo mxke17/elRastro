@@ -20,7 +20,7 @@ export default async function home(context: RouteContext<RouteParams>) {
     }
 
 	const userJSON = user.ToJSON();
-	const address = await GetAddress(userJSON.Direccion);
+	const address = await GetAddress(userJSON.Direccion || "");
 	if(address === null){
 		notFound();
 	}

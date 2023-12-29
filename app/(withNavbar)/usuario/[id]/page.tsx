@@ -27,9 +27,10 @@ export default async function home(context: RouteContext<RouteParams>) {
     let address = null;
     if (user.Address != null) {
         address = await GetAddress(user.Address.toHexString());
-        if (address === null) {
-            return <h1>ERROR ADDRESS NULL</h1>;
-        }
+        
+    }
+    if (address === null) {
+        return <h1>ERROR ADDRESS NULL</h1>;
     }
     const bids = await GetAllBidsOfUser(userID);
     const auctionsAchieved = await GetAllAuctionsOfBuyer(userID);
