@@ -4,7 +4,7 @@
 import { Address, AddressJSON } from "@/database/address";
 import { Auction, AuctionJSON } from "@/database/auctions";
 import { Bid, BidJSON } from "@/database/bid";
-import {  User, UserJSON } from "@/database/users";
+import { User, UserJSON } from "@/database/users";
 import { ReviewJSON, Review } from "@/database/reviews";
 import React from "react";
 import { AuctionList } from "./auctionList";
@@ -41,7 +41,7 @@ export async function Profile(props: profileProps) {
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
                   <img src={user.Picture}
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" style={{ width: "150px", zIndex: "1" }} />
-                  
+
                 </div>
                 <div className="ms-4" style={{ marginTop: "130px" }}>
                   <h5>{user.UserName}</h5>
@@ -94,7 +94,13 @@ export async function Profile(props: profileProps) {
               <div className="card-body text-black p-4">
                 <div className="row">
                   {/* Aquí puedes agregar contenido para las subastas recientes */}
-                  <AuctionList auctions={auctions.map(auction => auction.ToJSON())}></AuctionList>
+                  {props.auctions.length === 0 ? (
+                    <h4>No has hecho subastas todavia</h4>
+                  ) : (
+                    <AuctionList auctions={auctions.map(auction => auction.ToJSON())}></AuctionList>
+                  )}
+
+
                 </div>
               </div>
             </div>

@@ -86,7 +86,11 @@ export async function ProfilePujas(props: profileProps) {
                             </div>
                             <div className="card-body text-black p-4">
                                 <div className="row">
-                                    <BidList bids={props.bids}></BidList>
+                                    {props.bids.length === 0 ? (
+                                        <h4>No has hecho pujas todavia</h4>
+                                    ) : (
+                                        <BidList bids={props.bids} />
+                                    )}
                                 </div>
                             </div>
                         </div>
