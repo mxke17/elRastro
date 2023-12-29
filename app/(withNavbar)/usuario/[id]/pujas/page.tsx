@@ -21,11 +21,13 @@ export default async function home(context: RouteContext<RouteParams>) {
     const userID = context.params.id;
 
     const user = await GetUser(userID);
+
     if (user === null) {
         notFound();
     }
+    const userJSON = user.ToJSON();
     const auctions = await GetAllAuctionsOfUser(userID);
-    const address = await GetAddress(user.Address.toHexString());
+    const address = await GetAddress(userJSON.Direccion || "");
     const bids = await GetAllBidsOfUser(userID);
     const auctionsAchieved = await GetAllAuctionsOfBuyer(userID);
     const reviews = await GetAllReviewsOfUser(userID);
