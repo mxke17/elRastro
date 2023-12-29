@@ -16,7 +16,9 @@ export default async function auction(context: RouteContext<RouteParams>){
     }
 
     return <>
-        <div style={{ border: "1px solid #ddd", borderRadius: "8px", margin: "16px", padding: "16px", backgroundColor: "#fff", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+        <div style={{ border: "1px solid #ddd", borderRadius: "8px", margin: "16px", padding: "16px", backgroundColor: "#fff", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)", alignItems: "center" }}>
+        <h1>Metodos de Pago<br/><br/></h1>
+
         <ButtonPaypal></ButtonPaypal>
     </div>
     </>;
