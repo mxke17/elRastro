@@ -41,9 +41,7 @@ export async function Profile(props: profileProps) {
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
                   <img src={user.Picture}
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" style={{ width: "150px", zIndex: "1" }} />
-                  <button className="btn btn-outline-dark" style={{ height: "36px", overflow: "visible" }}>
-                    Edit profile
-                  </button>
+                  
                 </div>
                 <div className="ms-4" style={{ marginTop: "130px" }}>
                   <h5>{user.UserName}</h5>
