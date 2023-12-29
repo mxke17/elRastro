@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { AddressJSON } from "@/database/address";
 import { UserJSON } from "@/database/users";
@@ -16,6 +17,7 @@ interface profileProps {
 export function EditUser(props: profileProps) {
     //const user = User.FromJSON(props.user);
     //const address = Address.FromJSON(props.address);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [address, setAddress] = useState(props.user.Direccion);
     const [addressID, setAddressID] = useState(props.address._id);
     const [calle, setCalle] = useState(props.address.Calle);
