@@ -39,7 +39,7 @@ export async function ProfilePujas(props: profileProps) {
                         <div className="card">
                             <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: "#000", height: "200px" }}>
                                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
-                                    <img src="/pruebaFoto.jpg"
+                                    <img src={user.Picture}
                                         alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" style={{ width: "150px", zIndex: "1" }} />
                                     <button className="btn btn-outline-dark" style={{ height: "36px", overflow: "visible" }}>
                                         Edit profile
