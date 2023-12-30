@@ -1,2 +1,6 @@
 {
+    "files.associations": {
+        "*.css": "tailwindcss",
+        "*.anm2": "xml"
+    }
 }

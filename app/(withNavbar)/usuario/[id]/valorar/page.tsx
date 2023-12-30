@@ -1,6 +1,7 @@
 import { Review } from "@/components/review";
-import { GetUser, GetBuyersOfUser } from "@/database/users";
+import { GetBuyersOfUser, GetUserByEmail } from "@/database/users";
 import { RouteContext } from "@/lib/route";
+import { getServerSession } from "next-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -16,8 +17,24 @@ export default async function auction(context: RouteContext<RouteParams>) {
     const sellerID = context.params.id;
 
     //coger el session e introducirlo en buyerID
-    const buyerID = "65510cc12ff250a1f12645c6";
-    const user = await GetUser(buyerID);
+    const session = await getServerSession();
+    const sessionUser = session?.user;
+
+    if (!sessionUser) {
+        return <></>;
+    }
+
+    if(!sessionUser.email || !sessionUser.image || !sessionUser.name) {
+        return <h1>Error fetching user info from session.</h1>;
+    }
+
+    const user = await GetUserByEmail(sessionUser.email);
+
+    if(!user) {
+        return <></>;
+    }
+
+    const buyerID = user.ID.toHexString();
 
     const listaCompradores = await GetBuyersOfUser(sellerID);
 
