@@ -1,8 +1,10 @@
 import { AuctionDetailed } from "@/components/auction";
 import { BidMasAlta } from "@/components/bid";
 import { HuellaCarbono } from "@/components/huellaCarbono";
+import { GetAddress } from "@/database/address";
 import { GetAuction } from "@/database/auctions";
 import { GetHighestBidForAuction } from "@/database/bid";
+import { GetMap } from "@/database/map";
 import { GetUser, GetUserByEmail } from "@/database/users";
 import { RouteContext } from "@/lib/route";
 import { getServerSession } from "next-auth";
@@ -20,11 +22,6 @@ export default async function auction(context: RouteContext<RouteParams>){
     const session = await getServerSession();
     const sessionUser = session?.user;
 
-
-
-
-
-
     const auctionDetallada = await GetAuction(context.params.id);
     
 
@@ -37,6 +34,20 @@ export default async function auction(context: RouteContext<RouteParams>){
     if(!usuario){
         return notFound();
     }
+
+    const userJSON = usuario.ToJSON();
+	const address = await GetAddress(userJSON.Direccion || "");
+	if(address === null){
+		notFound();
+	}
+	
+    const mapa = await GetMap(address.ID.toHexString());
+	if(mapa === null){
+		notFound();
+	}
+
+	const longitud = Number(mapa.lon);
+	const latitud = Number(mapa.lat);
 
     const bidMasAlta = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
 
@@ -87,6 +98,9 @@ export default async function auction(context: RouteContext<RouteParams>){
                 </Col>
                 <Col xs={1}></Col>
             </Row>
+            <div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
+			<Map longitud={longitud} latitud={latitud}></Map>
+		</div>
         </Container>
     </>;
     }
@@ -103,6 +117,9 @@ export default async function auction(context: RouteContext<RouteParams>){
                 </Col>
                 <Col xs={1}></Col>
             </Row>
+            <div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
+			<Map longitud={longitud} latitud={latitud}></Map>
+		</div>
         </Container>
     </>;
     }
@@ -121,6 +138,9 @@ export default async function auction(context: RouteContext<RouteParams>){
                 </Col>
                 <Col xs={1}></Col>
             </Row>
+            <div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
+			<Map longitud={longitud} latitud={latitud}></Map>
+		</div>
         </Container>
     </>;
 }
