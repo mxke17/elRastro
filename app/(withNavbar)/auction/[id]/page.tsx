@@ -3,8 +3,9 @@ import { BidMasAlta } from "@/components/bid";
 import { HuellaCarbono } from "@/components/huellaCarbono";
 import { GetAuction } from "@/database/auctions";
 import { GetHighestBidForAuction } from "@/database/bid";
-import { GetUser } from "@/database/users";
+import { GetUser, GetUserByEmail } from "@/database/users";
 import { RouteContext } from "@/lib/route";
+import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
@@ -16,7 +17,16 @@ interface RouteParams {
 
 export default async function auction(context: RouteContext<RouteParams>){
    
+    const session = await getServerSession();
+    const sessionUser = session?.user;
+
+
+
+
+
+
     const auctionDetallada = await GetAuction(context.params.id);
+    
 
     if(!auctionDetallada){
         return notFound();
@@ -81,8 +91,24 @@ export default async function auction(context: RouteContext<RouteParams>){
     </>;
     }
     const origen = usuario.Address?.toHexString();
-    const destino = "654b51b602b50741b0ddf8a3";
- // No se como hacer que pille las variables que les pase
+    
+    if(!sessionUser || !sessionUser.email || !sessionUser.image || !sessionUser.name) {
+        return <>
+        <Container fluid="md">
+            <Row>
+                <Col xs={1}></Col>
+                <Col>
+                <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
+                <BidMasAlta bid={bidMasAlta}></BidMasAlta>
+                </Col>
+                <Col xs={1}></Col>
+            </Row>
+        </Container>
+    </>;
+    }
+
+    const user = await GetUserByEmail(sessionUser.email);
+    const destino = user?.Address?.toHexString();
     return <>
         <Container fluid="md">
             <Row>

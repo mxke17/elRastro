@@ -4,12 +4,12 @@ import { ObjectId } from "mongodb";
 
 interface huellaProps {
     origen: string | undefined;
-    destino: string;
+    destino: string | undefined;
   }
 
 export async function HuellaCarbono(props: huellaProps){
 
-    if(props.origen && ObjectId.isValid(props.origen)){
+    if((props.origen && ObjectId.isValid(props.origen)) && (props.destino && ObjectId.isValid(props.destino))){
 
     const huella = await calcularHuellaCarbono(props.origen, props.destino);
 

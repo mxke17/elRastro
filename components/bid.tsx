@@ -1,6 +1,5 @@
 "use client";
 import { Bid } from "@/database/bid";
-import { CreateNewBid } from "@/database/bids_ops";
 import React, { FormEvent, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
@@ -60,14 +59,9 @@ export function NewBid(props: newBidProps) {
     const handleSumbit = async (event: FormEvent) => {
         event.preventDefault();
 
-        await CreateNewBid({
-            "Fecha de puja": new Date(),
-            "Cantidad": price,
-            Postor: props.user,
-            Subasta: sub
-        });
+        
 
-        window.location.href = "/auction/" + sub + "/pujar/pago";
+        window.location.href = "/auction/" + sub + "/pujar/pago/" + price;
     };
 
     return (
