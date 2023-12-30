@@ -3,6 +3,7 @@ import { RouteContext } from "@/lib/route";
 import { NewBid } from "@/components/bid";
 import { GetUserByEmail } from "@/database/users";
 import { getServerSession } from "next-auth";
+import { GetHighestBidForAuction } from "@/database/bid";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +17,9 @@ export default async function auction(context: RouteContext<RouteParams>){
     if(!auctionDetallada){
         return <>SUBASTA NO ENCONTRADA</>;
     }
+
+    const bidMasAlta = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
+    const precio = bidMasAlta?.Quantity || auctionDetallada.InitialPrice;
 
     const session = await getServerSession();
     const sessionUser = session?.user;
@@ -36,7 +40,7 @@ export default async function auction(context: RouteContext<RouteParams>){
 
     return <>
         <div style={{ border: "1px solid #ddd", borderRadius: "8px", margin: "16px", padding: "16px", backgroundColor: "#fff", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-            <NewBid subasta={auctionDetallada.ID.toHexString()} user={user.ID.toHexString()}></NewBid>
+            <NewBid subasta={auctionDetallada.ID.toHexString()} user={user.ID.toHexString()} precioMinimo={precio}></NewBid>
         </div>
     </>;
 }

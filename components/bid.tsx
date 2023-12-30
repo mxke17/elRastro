@@ -12,6 +12,7 @@ interface bidProps {
 interface newBidProps {
     subasta: string;
     user: string;
+    precioMinimo: number;
 }
 
 export function BidMasAlta(props: bidProps) {
@@ -44,15 +45,15 @@ export function BidMasAlta(props: bidProps) {
 export function NewBid(props: newBidProps) {
     const sub = props.subasta;
     const [price, setPrice] = useState(0);
+    const precioMinimo = props.precioMinimo; // Agregamos la variable precioMinimo
 
     const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const price = event.target.value;
-        if(price) {
+        if (price) {
             const parsedPrice = parseFloat(price);
-            if(!isNaN(parsedPrice)) {
+            if (!isNaN(parsedPrice)) {
                 setPrice(parsedPrice);
             }
-            console.log(price);
         }
     };
 
@@ -66,20 +67,22 @@ export function NewBid(props: newBidProps) {
             Subasta: sub
         });
 
-        window.location.href = "/auction/"+sub+"/pujar/pago";
+        window.location.href = "/auction/" + sub + "/pujar/pago";
     };
 
     return (
         <Card style={{ marginBottom: "20px" }}>
             <Card.Body>
                 <Form onSubmit={handleSumbit}>
-                    <Form.Group className="mb-3" controlId="formGroupTitle">
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroupDescription">
-                    </Form.Group>
                     <Form.Group controlId="formGroupMinPrice" className="mb-3">
                         <Form.Label>Cantidad:</Form.Label>
-                        <Form.Control onChange={handlePriceChange} type="number" placeholder="Introduce la cantidad de dinero que desees pujar" min="1" required/>
+                        <Form.Control
+                            onChange={handlePriceChange}
+                            type="number"
+                            placeholder="Introduce la cantidad de dinero que desees pujar"
+                            min={precioMinimo.toString()} // Establecer el valor mínimo dinámicamente
+                            required
+                        />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
