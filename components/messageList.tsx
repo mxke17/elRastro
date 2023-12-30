@@ -8,6 +8,7 @@ import { CreateNewMessage } from "@/database/message_ops";
 interface MessageListProp {
     messageList: Message[];
     chatId: string;
+    user: string;
 }
 
 
@@ -25,7 +26,7 @@ export function MessageList(props: MessageListProp) {
 
         CreateNewMessage({
             Message: message,
-            Sender: "653be37c5ee549bea86cd462",
+            Sender: props.user,
             Chat: props.chatId,
         });
         window.location.href = `/chats/${props.chatId}`;
@@ -38,7 +39,7 @@ export function MessageList(props: MessageListProp) {
                     {
                         props.messageList.map(message => {
                             const key = message.id.toString();
-                            return <div key={key}><MessageDetailed message={message}></MessageDetailed></div>;
+                            return <div key={key}><MessageDetailed message={message} user = {props.user}></MessageDetailed></div>;
                         })}
                 </Row>
             </Card>

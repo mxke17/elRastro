@@ -10,6 +10,8 @@ interface chatsMiniProps {
 export async function ChatMini(props: chatsMiniProps) {
     const chats = props.chat;
     const seller = await GetUser(chats.seller.toHexString());
+    console.log(seller?.UserName);
+    console.log(chats.seller.toHexString());
     if (seller === null) {
         return <></>;
     }

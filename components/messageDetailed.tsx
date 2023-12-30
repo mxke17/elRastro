@@ -3,12 +3,15 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 
 interface messageProp {
     message: Message;
+    user: string;
 }
 
 export function MessageDetailed(props: messageProp) {
     const message = props.message;
-    const user = "6560e2efa244c2665df8e44c";
+    const user = props.user;
     const sender = message.sender.toString();
+    console.log(user);
+    console.log(sender);
     if (!(user === sender)) {
         return <>
             <Container style={{ alignItems: "center", margin: "20px" }}>
