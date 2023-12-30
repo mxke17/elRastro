@@ -1,7 +1,6 @@
 import { Review } from "@/components/review";
 import { GetUser, GetBuyersOfUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
-import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -10,38 +9,24 @@ interface RouteParams {
 }
 
 export default async function auction(context: RouteContext<RouteParams>) {
+//sellerID -> persona del perfil
+//buyerID -> persona que quiere valorar y es la que tiene la sesion iniciada.
+//           Ademas es la que ha comprado el producto
+
     const sellerID = context.params.id;
-    const buyer = await GetUser(sellerID);
 
-    const userID = context.params.id;
-
-    const user = await GetUser(userID);
-    if (user === null) {
-        notFound();
-    }
-
-   
+    //coger el session e introducirlo en buyerID
+    const buyerID = "65510cc12ff250a1f12645c6";
+    const user = await GetUser(buyerID);
 
     const listaCompradores = await GetBuyersOfUser(sellerID);
-    const buyerID = user.ID.toHexString();
 
-
-
-
-
-
-
-
-
-
-    
     if (!user) {
         return <>USUARIO NO ENCONTRADO</>;
     }
-    if (!buyer) {
+    if (!buyerID) {
         return <>USUARIO NO ENCONTRADO</>;
     }
-
     if (!sellerID) {
         return <>VENDEDOR NO ENCONTRADO</>;
     }

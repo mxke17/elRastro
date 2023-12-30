@@ -84,6 +84,8 @@ export async function Profile(props: profileProps) {
 
                             style={{ height: "36px", overflow: "visible" }}
                           >
+                            {//El valorar solo debe de aparecer si el usario que quiere valorar le ha comprado a al perfil que esta mirando 
+                            }
                             Valorar
                           </button></a>
                       </p>
