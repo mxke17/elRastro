@@ -17,7 +17,7 @@ interface profileProps {
   auctionsAchieved: AuctionJSON[];
   reviews: ReviewJSON[];
   reviewsScore: number;
-
+  showReviewButton: boolean;
 }
 
 export async function Profile(props: profileProps) {
@@ -29,8 +29,6 @@ export async function Profile(props: profileProps) {
   const reviews = props.reviews.map(review => Review.FromJSON(review));
   const reviewsScore = props.reviewsScore;
 
-
-  //
   return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#0000" }}>
       <div className="py-5 h-100 container">
@@ -78,16 +76,18 @@ export async function Profile(props: profileProps) {
                     <div>
                       <p className="mb-1 h5">{reviewsScore.toFixed(2)}</p>
                       <p className="small text-muted mb-0"> Valoracion media
-                        <a href={`/usuario/${user.ID.toHexString()}/valorar`}>
-                          <button
-                            className="button btn btn-outline-dark"
 
-                            style={{ height: "36px", overflow: "visible" }}
-                          >
-                            {//El valorar solo debe de aparecer si el usario que quiere valorar le ha comprado a al perfil que esta mirando 
-                            }
-                            Valorar
-                          </button></a>
+                        {props.showReviewButton?
+                        <a href={`/usuario/${user.ID.toHexString()}/valorar`}>
+                        <button
+                          className="button btn btn-outline-dark"
+                          style={{ height: "36px", overflow: "visible" }}
+                        >
+                          Valorar
+                        </button></a>
+                        :
+                        <></>
+                        }
                       </p>
                     </div>
                   </div>

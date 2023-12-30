@@ -1,14 +1,12 @@
 import { Profile } from "@/components/profile";
-import { GetAllUsers, GetUser } from "@/database/users";
+import { GetAllUsers, GetUser, GetUserByEmail } from "@/database/users";
 import { RouteContext } from "@/lib/route";
-//import { AuctionList } from "@/components/auctionList";
 import { GetAddress } from "@/database/address";
-//imprt { Auction } from "@/database/auctions";
-//import { Profile2 } from "@/components/profile2";
 import { notFound } from "next/navigation";
 import { GetAllAuctionsOfBuyer, GetAllAuctionsOfUser } from "@/database/auctions";
-import { GetAllBidsOfUser } from "@/database/bid";
+import { GetAllBidsOfUser, GetHighestBidForAuction } from "@/database/bid";
 import { GetAllReviewsOfUser, GetAverageScoreOfUser } from "@/database/reviews";
+import { getServerSession } from "next-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -17,16 +15,33 @@ interface RouteParams {
 }
 
 export default async function home(context: RouteContext<RouteParams>) {
+    const session = await getServerSession();
+    const sessionUser = session?.user;
+
+    if (!sessionUser) {
+        return <></>;
+    }
+
+    if(!sessionUser.email || !sessionUser.image || !sessionUser.name) {
+        return <h1>Error fetching user info from session.</h1>;
+    }
+
+    const user = await GetUserByEmail(sessionUser.email);
+
+    if(!user) {
+        return <></>;
+    }
+
     const userID = context.params.id;
 
-    const user = await GetUser(userID);
-    if (user === null) {
+    const profileUser = await GetUser(userID);
+    if (profileUser === null) {
         notFound();
     }
     const auctions = await GetAllAuctionsOfUser(userID);
     let address = null;
-    if (user.Address != null) {
-        address = await GetAddress(user.Address.toHexString());
+    if (profileUser.Address != null) {
+        address = await GetAddress(profileUser.Address.toHexString());
         
     }
     if (address === null) {
@@ -38,31 +53,55 @@ export default async function home(context: RouteContext<RouteParams>) {
     const reviewsScore = await GetAverageScoreOfUser(userID);
 
     let mappedAuctions = null;
+    let showReviewButton = false;
     if (auctions != null) {
         mappedAuctions = auctions.map(auction => auction.ToJSON());
 
-    } let mappedBids = null;
+        let numWonAuctions = 0;
+        for (let i = 0; i < auctions.length; i++) {
+            const auction = auctions[i];
+
+            if(auction.Deadline < new Date()) {
+                const bid = await GetHighestBidForAuction(auction.ID.toHexString());
+                if(bid?.Bidder.toHexString() === user.ID.toHexString()) {
+                    numWonAuctions += 1;
+                }
+            }
+        }
+
+        let numReviews = 0;
+        if(reviews) {
+            numReviews = reviews.filter(x => x.Buyer.toHexString() === user.ID.toHexString()).length;
+        }
+
+        showReviewButton = numReviews < numWonAuctions;
+    }
+
+    let mappedBids = null;
     if (bids != null) {
         mappedBids = bids.map(bid => bid.ToJSON());
-    } let mappedAuctionsAchieved = null;
+    }
+    
+    let mappedAuctionsAchieved = null;
     if (auctionsAchieved != null) {
         mappedAuctionsAchieved = auctionsAchieved.map(auction => auction.ToJSON());
-    } let mappedReviews = null;
+    }
+    
+    let mappedReviews = null;
     if (reviews != null) {
         mappedReviews = reviews.map(review => review.ToJSON());
     }
 
-
-
     return <>
         <Profile
-            user={user.ToJSON()}
+            user={profileUser.ToJSON()}
             address={address.ToJSON() ?? null}
             auctions={mappedAuctions ?? []}
             bids={mappedBids ?? []}
             auctionsAchieved={mappedAuctionsAchieved ?? []}
             reviews={mappedReviews ?? []}
             reviewsScore={reviewsScore ?? 0}
+            showReviewButton={showReviewButton}
         ></Profile>
     </>;
 }
