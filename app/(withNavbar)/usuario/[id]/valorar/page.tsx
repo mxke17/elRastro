@@ -1,6 +1,7 @@
 import { Review } from "@/components/review";
 import { GetUser, GetBuyersOfUser } from "@/database/users";
 import { RouteContext } from "@/lib/route";
+import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -12,20 +13,35 @@ export default async function auction(context: RouteContext<RouteParams>) {
     const sellerID = context.params.id;
     const buyer = await GetUser(sellerID);
 
-    const buyerID = "65510cc12ff250a1f12645c6";
-    const user = await GetUser(buyerID);
+    const userID = context.params.id;
+
+    const user = await GetUser(userID);
+    if (user === null) {
+        notFound();
+    }
+
+   
 
     const listaCompradores = await GetBuyersOfUser(sellerID);
+    const buyerID = user.ID.toHexString();
 
+
+
+
+
+
+
+
+
+
+    
     if (!user) {
         return <>USUARIO NO ENCONTRADO</>;
     }
     if (!buyer) {
         return <>USUARIO NO ENCONTRADO</>;
     }
-    if (!buyerID) {
-        return <>USUARIO NO ENCONTRADO</>;
-    }
+
     if (!sellerID) {
         return <>VENDEDOR NO ENCONTRADO</>;
     }
