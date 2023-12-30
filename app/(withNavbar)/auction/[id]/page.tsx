@@ -18,37 +18,31 @@ interface RouteParams {
     id: string
 }
 
-export default async function auction(context: RouteContext<RouteParams>){
-   
+export default async function auction(context: RouteContext<RouteParams>) {
+
     const session = await getServerSession();
     const sessionUser = session?.user;
 
     const auctionDetallada = await GetAuction(context.params.id);
-    
 
-    if(!auctionDetallada){
+
+    if (!auctionDetallada) {
         return notFound();
     }
 
     const usuario = await GetUser(auctionDetallada.Seller.toHexString());
 
-    if(!usuario){
+    if (!usuario) {
         return notFound();
     }
 
     const userJSON = usuario.ToJSON();
-	const address = await GetAddress(userJSON.Direccion || "");
-	if(address === null){
-		notFound();
-	}
-	
-    const mapa = await GetMap(address.ID.toHexString());
-	if(mapa === null){
-		notFound();
-	}
+    const address = await GetAddress(userJSON.Direccion || "");
+    if (address === null) {
+        notFound();
+    }
 
-	const longitud = Number(mapa.lon);
-	const latitud = Number(mapa.lat);
+    const mapa = await GetMap(address.ID.toHexString());
 
     const bidMasAlta = await GetHighestBidForAuction(auctionDetallada.ID.toHexString());
 
@@ -87,42 +81,52 @@ export default async function auction(context: RouteContext<RouteParams>){
     }
 
 
-    if(!bidMasAlta){
+    if (!bidMasAlta) {
         return <>
-        <Container fluid="md">
-            <Row>
-                <Col xs={1}></Col>
-                <Col>
-                <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()} ></AuctionDetailed>
-                Chooollo a la vista ¡Sé el primero en pujar!<br></br>
-                <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
-                </Col>
-                <Col xs={1}></Col>
-            </Row>
-            <div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
-			<Map longitud={longitud} latitud={latitud}></Map>
-		</div>
-        </Container>
-    </>;
+            <Container fluid="md">
+                <Row>
+                    <Col xs={1}></Col>
+                    <Col>
+                        <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()} ></AuctionDetailed>
+                        Chooollo a la vista ¡Sé el primero en pujar!<br></br>
+                        <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
+                    </Col>
+                    <Col xs={1}></Col>
+                </Row>
+                {
+                    mapa !== null ?
+                        <div style={{ width: "100%", height: "500px", backgroundColor: "red" }}>
+                            <Map longitud={Number(mapa.lon)} latitud={Number(mapa.lat)}></Map>
+                        </div>
+                        :
+                        <h3>No se ha encontrado la dirección de esta subasta...</h3>
+                }
+            </Container>
+        </>;
     }
     const origen = usuario.Address?.toHexString();
-    
-    if(!sessionUser || !sessionUser.email || !sessionUser.image || !sessionUser.name) {
+
+    if (!sessionUser || !sessionUser.email || !sessionUser.image || !sessionUser.name) {
         return <>
-        <Container fluid="md">
-            <Row>
-                <Col xs={1}></Col>
-                <Col>
-                <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
-                <BidMasAlta bid={bidMasAlta}></BidMasAlta>
-                </Col>
-                <Col xs={1}></Col>
-            </Row>
-            <div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
-			<Map longitud={longitud} latitud={latitud}></Map>
-		</div>
-        </Container>
-    </>;
+            <Container fluid="md">
+                <Row>
+                    <Col xs={1}></Col>
+                    <Col>
+                        <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
+                        <BidMasAlta bid={bidMasAlta}></BidMasAlta>
+                    </Col>
+                    <Col xs={1}></Col>
+                </Row>
+                {
+                    mapa !== null ?
+                        <div style={{ width: "100%", height: "500px", backgroundColor: "red" }}>
+                            <Map longitud={Number(mapa.lon)} latitud={Number(mapa.lat)}></Map>
+                        </div>
+                        :
+                        <h3>No se ha encontrado la dirección de esta subasta...</h3>
+                }
+            </Container>
+        </>;
     }
 
     const user = await GetUserByEmail(sessionUser.email);
@@ -132,16 +136,21 @@ export default async function auction(context: RouteContext<RouteParams>){
             <Row>
                 <Col xs={1}></Col>
                 <Col>
-                <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
-                <BidMasAlta bid={bidMasAlta}></BidMasAlta>
-                <HuellaCarbono origen = {origen} destino = {destino}></HuellaCarbono>
-                <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
+                    <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
+                    <BidMasAlta bid={bidMasAlta}></BidMasAlta>
+                    <HuellaCarbono origen={origen} destino={destino}></HuellaCarbono>
+                    <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
                 <Col xs={1}></Col>
             </Row>
-            <div style={{width:"100%", height:"500px", backgroundColor:"red"}}>
-			<Map longitud={longitud} latitud={latitud}></Map>
-		</div>
+            {
+                mapa !== null ?
+                    <div style={{ width: "100%", height: "500px", backgroundColor: "red" }}>
+                        <Map longitud={Number(mapa.lon)} latitud={Number(mapa.lat)}></Map>
+                    </div>
+                    :
+                    <h3>No se ha encontrado la dirección de esta subasta...</h3>
+            }
         </Container>
     </>;
 }
