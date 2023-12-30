@@ -10,7 +10,6 @@ interface RouteParams {
 
 export default async function auction(context: RouteContext<RouteParams>){
     const auctionDetallada = await GetAuction(context.params.id); 
-
     if(!auctionDetallada){
         return <>SUBASTA NO ENCONTRADA</>;
     }

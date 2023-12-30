@@ -80,7 +80,8 @@ export default async function auction(context: RouteContext<RouteParams>){
         </Container>
     </>;
     }
-
+    const origen = usuario.Address?.toHexString();
+    const destino = "654b51b602b50741b0ddf8a3";
  // No se como hacer que pille las variables que les pase
     return <>
         <Container fluid="md">
@@ -89,7 +90,7 @@ export default async function auction(context: RouteContext<RouteParams>){
                 <Col>
                 <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()}></AuctionDetailed>
                 <BidMasAlta bid={bidMasAlta}></BidMasAlta>
-                <HuellaCarbono origen = {"654b506202b50741b0ddf8a0"} destino = "654b51b602b50741b0ddf8a3"></HuellaCarbono>
+                <HuellaCarbono origen = {origen} destino = {destino}></HuellaCarbono>
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
                 <Col xs={1}></Col>
