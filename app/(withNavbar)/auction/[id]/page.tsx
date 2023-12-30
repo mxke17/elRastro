@@ -10,6 +10,7 @@ import { RouteContext } from "@/lib/route";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { Map } from "@/components/map";
 
 export const dynamic = "force-dynamic";
 
