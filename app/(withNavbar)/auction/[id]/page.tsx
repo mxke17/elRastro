@@ -135,7 +135,9 @@ export default async function auction(context: RouteContext<RouteParams>) {
                 <Col>
                 <AuctionDetailed auction={auctionDetallada.ToJSON()} usuario={usuario.ToJSON()} usuarioSesion = {user?.ID.toHexString()}></AuctionDetailed>
                 <BidMasAlta bid={bidMasAlta}></BidMasAlta>
-                <HuellaCarbono origen = {origen} destino = {destino}></HuellaCarbono>
+                {mapa !== null?
+                <HuellaCarbono origen = {origen} destino = {destino}></HuellaCarbono>:<></>
+                }         
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
                 <Col xs={1}></Col>
