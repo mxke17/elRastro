@@ -143,7 +143,7 @@ export default async function auction(context: RouteContext<RouteParams>) {
                 <Col xs={1}></Col>
                 {
                 mapa !== null ?
-                    <div style={{ width: "100%", height: "500px", backgroundColor: "red" }}>
+                    <div style={{ width: "100%", height: "500px"}}>
                         <Map longitud={Number(mapa.lon)} latitud={Number(mapa.lat)}></Map>
                     </div>
                     :
