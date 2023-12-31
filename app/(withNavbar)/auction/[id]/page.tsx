@@ -141,15 +141,16 @@ export default async function auction(context: RouteContext<RouteParams>) {
                 <Button href={`/auction/${auctionDetallada.ID.toHexString()}/pujar`}>PUJAR</Button>
                 </Col>
                 <Col xs={1}></Col>
-            </Row>
-            {
+                {
                 mapa !== null ?
                     <div style={{ width: "100%", height: "500px", backgroundColor: "red" }}>
                         <Map longitud={Number(mapa.lon)} latitud={Number(mapa.lat)}></Map>
                     </div>
                     :
-                    <h3>No se ha encontrado la dirección de esta subasta...</h3>
+                    <h3>El usuario no tiene configurado su direccion...</h3>
             }
+            </Row>
+           
         </Container>
     </>;
 }
